@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Github User</string>
+
+    <string name="about">Tentang Kami</string>
+    <string name="language">Bahasa</string>
+    <string name="account">Akun</string>
+    <string name="popular">Populer</string>
+    <string name="repositories">Repositori</string>
+    <string name="organizations">Organisasi</string>
+    <string name="starred">Berbintang</string>
+    <string name="notifications">Notifikasi</string>
+    <string name="details">Detail</string>
+    <string name="starred_repositories">Repositori Berbintang</string>
+    <string name="no_data_found">Data Tidak Ditemukan</string>
+    <string name="trending_now">Sedang Tren Sekarang</string>
+
+    <string name="app_version">Github User untuk perangkat mobile v1.0.00</string>
+
+    <string name="search">Cari</string>
+    <string name="search_hint">Cari dengan username</string>
+
+    <string name="bottom_nav_txt_01">Beranda</string>
+    <string name="bottom_nav_txt_02">Jelajah</string>
+    <string name="bottom_nav_txt_03">Profil</string>
+    <string name="bottom_nav_txt_04">Pengaturan</string>
+
+    <string name="follower">Pengikut</string>
+    <string name="following">Mengikuti</string>
+    <string name="follow">Ikuti</string>
+    <string name="unfollow">Tidak Ikuti</string>
+
+    <!-- Temporary text -->
+    <string name="temp_name">Nama disini…</string>
+    <string name="temp_username">usernamesaya</string>
+    <string name="temp_company">Kantor Saya</string>
+    <string name="temp_link">link.com</string>
+    <string name="temp_location">Lokasi saya</string>
+    <string name="temp_number">0</string>
+    <string name="temp_repo_name">Nama Penyimpanan</string>
+    <string name="temp_repo_detail">Ini adalah detail penyimpanan</string>
+    <string name="temp_category_name">Nama Kategori</string>
+    <string name="temp_bio">Ini Bio saya…</string>
+    <string name="temp_email">test@gmail.com</string>
+    <string name="temp_fullname">username/reponame</string>
+    <string name="temp_notification_title">Ini adalah detail dari Notifikasi</string>
+    <string name="temp_days">8d</string>
+    <string name="temp_programming_language">Java</string>
+    <string name="temp_find_inspiration">Temukan inspirasi proyek melalui fitur \"Trending Now"\</string>
+
+    <string name="my_work">Pekerjaan Saya</string>
+    <string name="issues">Masalah</string>
+    <string name="discussions">Diskusi</string>
+    <string name="contribution">Kontribusi</string>
+    <string name="favorites">Favorit</string>
+    <string name="favorite_detail">Tambahkan repositori favorit untuk akses cepat kapan saja, tanpa harus mencari</string>
+    <string name="add_repositories">Tambah Repositori</string>
+    <string name="chartDetail">Grafik kontribusi profil Anda adalah catatan kontribusi yang Anda buat ke repositori GitHub.</string>
+
+    <string name="failed_text">Gagal mengambil data dari server. Silahkan coba kembali.</string>
+
+    <string name="patricia_fiona">Patricia Fiona</string>
+    <string name="android_developer">Android Developer</string>
+    <string name="myEmail">patriciafiona3@gmail.com</string>
+
+    <string name="not_following_anyone">Pengguna tidak mengikuti siapapun</string>
+    <string name="dont_have_followers">Pengguna tidak punya pengikut</string>
+
+    <!-- Image Description -->
+    <string name="about_background_img">Gambar Latar Belakang Halaman About</string>
+    <string name="white_wave_img">Gambar Gelombang Putih</string>
+    <string name="fb_button">Tombol FB</string>
+    <string name="ig_button">Tombol IG</string>
+    <string name="linkedin_button">Tombol LinkedIn</string>
+    <string name="github_button">Tombol Github</string>
+    <string name="white_dot">Titik Putih</string>
+    <string name="grey_star_icon">Ikon bintang abu-abu</string>
+    <string name="grey_location_icon">Ikon Lokasi abu-abu</string>
+    <string name="grey_repo_icon">Ikon Penyimpanan abu-abu</string>
+    <string name="grey_company_icon">Ikon Perusahaan abu-abu</string>
+    <string name="grey_email_icon">Ikon Email abu-abu</string>
+    <string name="grey_link_icon">Ikon Link abu-abu</string>
+    <string name="grey_user_outline_icon">Ikon Orang-Garis abu-abu</string>
+    <string name="no_data_img">Gambar Tidak Ada Data</string>
+    <string name="trending_banner_img">Gambar Spanduk Trending</string>
+    <string name="github_logo_img">Gambar Logo Github</string>
+    <string name="white_issue_icon">Ikon isu putih</string>
+    <string name="white_discus_icon">Ikon Diskusi Putih</string>
+    <string name="white_repo_icon">Icon Penyimpanan Putih</string>
+    <string name="white_company_icon">Ikon Perusahaan Putih</string>
+    <string name="grey_dot">Titik abu-abu</string>
+    <string name="white_star_icon">Ikon bintang putih</string>
+    <string name="grey_notification_icon">Ikon Notifikasi abu-abu</string>
+    <string name="grey_language_icon">Ikon Bahasa abu-abu</string>
+    <string name="grey_about_icon">Ikon Tentang abu-abu</string>
+    <string name="yellow_star_icon">Ikon bintang kuning</string>
+    <string name="user_img">Gambar Pengguna</string>
+</resources>

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/FragmentLayout"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragments.SettingsFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/textView6"
+            style="@style/TextContent.xl"
+            android:layout_width="match_parent"
+            android:text="@string/bottom_nav_txt_04"
+            android:textColor="@color/purple_700"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/icon_account"
+            style="@style/Image.30"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            android:src="@drawable/ic_baseline_notifications_grey_24"
+            app:layout_constraintEnd_toStartOf="@+id/text_account"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView6"
+            android:contentDescription="@string/grey_notification_icon" />
+
+        <TextView
+            android:id="@+id/text_account"
+            style="@style/TextContent.SettingMenu"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/notifications"
+            app:layout_constraintStart_toEndOf="@+id/icon_about"
+            app:layout_constraintTop_toBottomOf="@+id/textView6"
+            app:layout_constraintWidth_percent="0.9" />
+
+        <ImageView
+            android:id="@+id/icon_language"
+            style="@style/Image.30"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            android:src="@drawable/ic_baseline_language_black_24"
+            app:layout_constraintEnd_toStartOf="@+id/text_language"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/icon_account"
+            android:contentDescription="@string/grey_language_icon" />
+
+        <TextView
+            android:id="@+id/text_language"
+            style="@style/TextContent.SettingMenu"
+            android:layout_marginTop="16dp"
+            android:text="@string/language"
+            app:layout_constraintStart_toEndOf="@+id/icon_account"
+            app:layout_constraintTop_toBottomOf="@+id/icon_account"
+            app:layout_constraintWidth_percent="0.9" />
+
+        <ImageView
+            android:id="@+id/icon_about"
+            style="@style/Image.30"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            android:src="@drawable/ic_baseline_info_black_24"
+            app:layout_constraintEnd_toStartOf="@+id/text_about"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/icon_language"
+            android:contentDescription="@string/grey_about_icon" />
+
+        <TextView
+            android:id="@+id/text_about"
+            style="@style/TextContent.SettingMenu"
+            android:layout_marginTop="16dp"
+            android:text="@string/about"
+            app:layout_constraintStart_toEndOf="@+id/icon_about"
+            app:layout_constraintTop_toBottomOf="@+id/icon_language"
+            app:layout_constraintWidth_percent="0.9" />
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:layout_marginBottom="8dp"
+            android:adjustViewBounds="true"
+            android:scaleType="fitStart"
+            android:src="@drawable/github_logo_txt"
+            app:layout_constraintBottom_toTopOf="@+id/textView2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/icon_about"
+            app:layout_constraintWidth_percent="0.2"
+            android:contentDescription="@string/github_logo_img" />
+
+        <TextView
+            android:id="@+id/textView2"
+            style="@style/TextContent"
+            android:layout_width="match_parent"
+            android:layout_marginBottom="8dp"
+            android:text="@string/app_version"
+            android:textColor="@color/purple_700"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

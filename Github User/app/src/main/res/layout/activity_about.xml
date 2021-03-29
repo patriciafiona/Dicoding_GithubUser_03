@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".activities.AboutActivity"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.faltenreich.skeletonlayout.SkeletonLayout
+        android:id="@+id/skeletonLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/about_background"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/abstract_marble_blue"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:contentDescription="@string/about_background_img" />
+
+            <ImageView
+                android:id="@+id/imageView4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scaleType="fitEnd"
+                android:src="@drawable/ic_wave"
+                app:layout_constraintBottom_toBottomOf="@+id/about_background"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:contentDescription="@string/white_wave_img" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:src="@drawable/patriciafiona"
+
+                app:layout_constraintBottom_toTopOf="@+id/myName"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/myName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:text="@string/patricia_fiona"
+                android:textAlignment="center"
+                android:textColor="@color/blue_900"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/about_background" />
+
+            <TextView
+                android:id="@+id/myStatus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/android_developer"
+                android:textAlignment="center"
+                app:layout_constraintTop_toBottomOf="@+id/myName" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/myEmail"
+                android:textAlignment="center"
+                app:layout_constraintTop_toBottomOf="@+id/myStatus" />
+
+            <!--Social Media Button-->
+            <LinearLayout
+                android:id="@+id/linearLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="30dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@+id/textView2">
+
+                <ImageButton
+                    android:id="@+id/sm_facebook"
+                    style="@style/SocialMediaIcons"
+                    android:src="@drawable/icon_facebook"
+                    android:contentDescription="@string/fb_button" />
+
+                <ImageButton
+                    android:id="@+id/sm_instagram"
+                    style="@style/SocialMediaIcons"
+                    android:src="@drawable/icon_instagram"
+                    android:contentDescription="@string/ig_button" />
+
+                <ImageButton
+                    android:id="@+id/sm_linkedIn"
+                    style="@style/SocialMediaIcons"
+                    android:src="@drawable/icon_linkedin"
+                    android:contentDescription="@string/linkedin_button" />
+
+                <ImageButton
+                    android:id="@+id/sm_github"
+                    style="@style/SocialMediaIcons"
+                    android:src="@drawable/icon_github"
+                    android:contentDescription="@string/github_button" />
+
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.faltenreich.skeletonlayout.SkeletonLayout>
+
+</ScrollView>
