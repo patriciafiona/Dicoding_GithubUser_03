@@ -59,16 +59,6 @@ class DetailUserActivity : AppCompatActivity() {
         const val MY_USERNAME = "patriciafiona"
 
         private const val EXTRA_STATE = "EXTRA_STATE"
-
-        const val EXTRA_USER_FAV = "extra_user_fav"
-        const val EXTRA_POSITION = "extra_position"
-        const val REQUEST_ADD = 100
-        const val RESULT_ADD = 101
-        const val REQUEST_UPDATE = 200
-        const val RESULT_UPDATE = 201
-        const val RESULT_DELETE = 301
-        const val ALERT_DIALOG_CLOSE = 10
-        const val ALERT_DIALOG_DELETE = 20
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -132,8 +122,6 @@ class DetailUserActivity : AppCompatActivity() {
                 MappingHelper.mapCursorToArrayList(cursor)
             }
             val users = deferredUsers.await()
-
-            Log.e("Hasil Cek", users.toString())
 
             statusFav = users.size > 0
 

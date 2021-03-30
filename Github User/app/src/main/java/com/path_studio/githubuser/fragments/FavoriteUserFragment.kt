@@ -1,21 +1,30 @@
 package com.path_studio.githubuser.fragments
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.path_studio.githubuser.MappingHelper
+import com.path_studio.githubuser.Utils
 import com.path_studio.githubuser.activities.MainActivity
 import com.path_studio.githubuser.adapters.UserFavAdapter
 import com.path_studio.githubuser.database.UserHelper
 import com.path_studio.githubuser.databinding.FragmentFavoriteUserBinding
+import com.path_studio.githubuser.entities.User
 import com.path_studio.githubuser.entities.UserFav
+import com.path_studio.githubuser.models.CreateAPI
+import com.path_studio.githubuser.models.MainViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class FavoriteUserFragment : Fragment() {
 
@@ -24,7 +33,8 @@ class FavoriteUserFragment : Fragment() {
     private lateinit var adapter: UserFavAdapter
 
     companion object {
-        private const val EXTRA_STATE = "EXTRA_STATE"
+        private const val EXTRA_USER = "EXTRA_USER"
+        private const val EXTRA_USER_DETAIL = "EXTRA_USER_DETAIL"
     }
 
     override fun onCreateView(
@@ -34,21 +44,9 @@ class FavoriteUserFragment : Fragment() {
         _binding = FragmentFavoriteUserBinding.inflate(inflater, container, false)
         val view = binding.root
 
-        showLoading(true)
-
         binding.rvFavUser.layoutManager = LinearLayoutManager(activity)
         binding.rvFavUser.setHasFixedSize(true)
         adapter = UserFavAdapter(activity as MainActivity)
-
-        if (savedInstanceState == null) {
-            readDatabase()
-        } else {
-            val list = savedInstanceState.getParcelableArrayList<UserFav>(EXTRA_STATE)
-            if (list != null) {
-                adapter.listUser = list
-                showLoading(false)
-            }
-        }
 
         return view
     }
@@ -57,6 +55,29 @@ class FavoriteUserFragment : Fragment() {
         //Show Search Bar
         (activity as MainActivity).setSearchBarVisibility(1)
         (activity as MainActivity).clearSearchBar()
+
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        if (savedInstanceState == null) {
+            showLoading(true)
+            readDatabase()
+        } else {
+            val list = savedInstanceState.getParcelableArrayList<UserFav>(EXTRA_USER)
+            val list_detail = savedInstanceState.getParcelableArrayList<User>(EXTRA_USER_DETAIL)
+            if (list != null && list_detail != null) {
+                adapter.listUser = list
+                adapter.listDetailUser = list_detail
+                binding.rvFavUser.adapter = adapter
+            }
+        }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putParcelableArrayList(EXTRA_USER, adapter.listUser)
+        outState.putParcelableArrayList(EXTRA_USER_DETAIL, adapter.listDetailUser)
     }
 
     private fun readDatabase(){
@@ -71,18 +92,46 @@ class FavoriteUserFragment : Fragment() {
             val users = deferredUsers.await()
             if (users.size > 0) {
                 adapter.listUser = users
-                binding.rvFavUser.adapter = adapter
 
-                binding.noData.visibility = View.GONE
-                binding.noDataTxt.visibility = View.GONE
+                //get data from API and set to adapter
+                val listUserDetail: ArrayList<User> = ArrayList()
+                for(u in users){
+                    CreateAPI.create().getUserDetail(
+                        u.login,
+                        ProfileFragment.ACCESS_TOKEN
+                    ).enqueue(object : Callback<User> {
+                        override fun onResponse(call: Call<User>, response: Response<User>) {
+                            if (response.isSuccessful) {
+                                listUserDetail.add(response.body() as User)
+
+                                if(listUserDetail.size == users.size) {
+                                    adapter.listDetailUser = listUserDetail
+
+                                    binding.rvFavUser.adapter = adapter
+
+                                    binding.noData.visibility = View.GONE
+                                    binding.noDataTxt.visibility = View.GONE
+
+                                    showLoading(false)
+                                }
+                            }
+                        }
+
+                        override fun onFailure(call: Call<User>, error: Throwable) {
+                            Log.e("tag", "The Error is: ${error.message}")
+                            Utils.showFailedGetDataFromAPI(activity as MainActivity)
+                        }
+                    })
+                }
             } else {
                 adapter.listUser = ArrayList()
                 binding.rvFavUser.adapter = adapter
 
                 binding.noData.visibility = View.VISIBLE
                 binding.noDataTxt.visibility = View.VISIBLE
+                showLoading(false)
             }
-            showLoading(false)
+
             userHelper.close()
         }
     }
