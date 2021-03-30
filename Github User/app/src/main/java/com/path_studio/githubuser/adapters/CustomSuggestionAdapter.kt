@@ -14,7 +14,7 @@ import com.mancj.materialsearchbar.adapter.SuggestionsAdapter
 import com.path_studio.githubuser.R
 import com.path_studio.githubuser.activities.DetailUserActivity
 import com.path_studio.githubuser.activities.MainActivity
-import com.path_studio.githubuser.models.User
+import com.path_studio.githubuser.entities.User
 
 class CustomSuggestionsAdapter(inflater: LayoutInflater?, val activity: MainActivity) : SuggestionsAdapter<User, CustomSuggestionsAdapter.SuggestionHolder>(inflater)
 {

@@ -11,7 +11,7 @@ import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 import com.path_studio.githubuser.R
 import com.path_studio.githubuser.Utils
-import com.path_studio.githubuser.models.Notification
+import com.path_studio.githubuser.entities.Notification
 import de.hdodenhof.circleimageview.CircleImageView
 
 class ListNotificationAdapter(val list: ArrayList<Notification>, val context: Context) : RecyclerView.Adapter<ListNotificationAdapter.ListViewHolder>(){

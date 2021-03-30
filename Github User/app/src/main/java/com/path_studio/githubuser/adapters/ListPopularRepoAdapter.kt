@@ -10,7 +10,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.path_studio.githubuser.R
 import com.path_studio.githubuser.Utils
-import com.path_studio.githubuser.models.Repository
+import com.path_studio.githubuser.entities.Repository
 import de.hdodenhof.circleimageview.CircleImageView
 
 class ListPopularRepoAdapter (val list: ArrayList<Repository>, val context: Context) : RecyclerView.Adapter<ListPopularRepoAdapter.ListViewHolder>(){

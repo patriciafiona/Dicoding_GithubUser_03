@@ -11,7 +11,7 @@ import com.google.android.material.tabs.TabLayoutMediator
 import com.path_studio.githubuser.R
 import com.path_studio.githubuser.adapters.FollowTabsAdapter
 import com.path_studio.githubuser.databinding.ActivityDetailFollowBinding
-import com.path_studio.githubuser.models.User
+import com.path_studio.githubuser.entities.User
 
 class DetailFollowActivity : AppCompatActivity() {
 

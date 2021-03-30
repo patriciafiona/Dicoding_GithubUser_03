@@ -11,7 +11,7 @@ import com.bumptech.glide.request.RequestOptions
 import com.path_studio.githubuser.R
 import com.path_studio.githubuser.Utils
 import com.path_studio.githubuser.activities.MainActivity
-import com.path_studio.githubuser.models.SearchRepo
+import com.path_studio.githubuser.entities.SearchRepo
 import de.hdodenhof.circleimageview.CircleImageView
 
 class ListTrendingRepoAdapter(val searchRepo: SearchRepo, val activity: MainActivity) : RecyclerView.Adapter<ListTrendingRepoAdapter.ListViewHolder>() {

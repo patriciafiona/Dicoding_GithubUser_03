@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.path_studio.githubuser.Utils
+import com.path_studio.githubuser.entities.*
 import com.path_studio.githubuser.fragments.ProfileFragment
 import retrofit2.Call
 import retrofit2.Callback

@@ -19,9 +19,9 @@ import com.path_studio.githubuser.activities.MainActivity
 import com.path_studio.githubuser.adapters.ListPopularRepoAdapter
 import com.path_studio.githubuser.databinding.FragmentProfileBinding
 import com.path_studio.githubuser.models.MainViewModel
-import com.path_studio.githubuser.models.Organization
-import com.path_studio.githubuser.models.Repository
-import com.path_studio.githubuser.models.User
+import com.path_studio.githubuser.entities.Organization
+import com.path_studio.githubuser.entities.Repository
+import com.path_studio.githubuser.entities.User
 
 class ProfileFragment : Fragment() {
 

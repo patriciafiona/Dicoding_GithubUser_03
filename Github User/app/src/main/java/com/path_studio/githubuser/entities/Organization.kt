@@ -1,4 +1,4 @@
-package com.path_studio.githubuser.models
+package com.path_studio.githubuser.entities
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize

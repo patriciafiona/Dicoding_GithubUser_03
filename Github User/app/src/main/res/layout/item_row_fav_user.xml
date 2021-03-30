@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/cl_item_user"
+    android:foreground="?android:attr/selectableItemBackground"
+    android:clickable="true"
+    android:paddingVertical="20dp"
+    android:focusable="true">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/item_row_avatar"
+        style="@style/ItemRowAvatar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/item_row_name"
+        style="@style/ItemRowName"
+        android:layout_marginStart="10dp"
+        app:layout_constraintStart_toEndOf="@+id/item_row_avatar"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/item_row_username"
+        style="@style/ItemRowUsername"
+        android:layout_marginStart="10dp"
+        app:layout_constraintStart_toEndOf="@+id/item_row_avatar"
+        app:layout_constraintTop_toBottomOf="@+id/item_row_name" />
+
+    <TextView
+        android:id="@+id/textView12"
+        style="@style/ItemRowUsername"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/added_at"
+        android:textStyle="italic"
+        app:layout_constraintStart_toEndOf="@+id/item_row_avatar"
+        app:layout_constraintTop_toBottomOf="@+id/item_row_username" />
+
+    <TextView
+        android:id="@+id/item_row_date"
+        style="@style/ItemRowUsername"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintWidth_percent="0.5"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/temp_date"
+        android:textStyle="italic"
+        app:layout_constraintStart_toEndOf="@+id/textView12"
+        app:layout_constraintTop_toBottomOf="@+id/item_row_username" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

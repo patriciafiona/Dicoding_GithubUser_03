@@ -12,7 +12,7 @@ import com.path_studio.githubuser.activities.DetailFollowActivity
 import com.path_studio.githubuser.adapters.ListFollowAdapter
 import com.path_studio.githubuser.databinding.FragmentFollowerBinding
 import com.path_studio.githubuser.models.MainViewModel
-import com.path_studio.githubuser.models.User
+import com.path_studio.githubuser.entities.User
 
 class FollowerFragment : Fragment() {
 

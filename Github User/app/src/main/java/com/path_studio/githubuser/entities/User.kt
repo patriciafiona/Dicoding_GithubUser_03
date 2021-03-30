@@ -1,4 +1,4 @@
-package com.path_studio.githubuser.models
+package com.path_studio.githubuser.entities
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
@@ -20,5 +20,5 @@ data class User (
     var following: Int,
     var created_at: String?,
     var updated_at: String?,
-    var type: String?
+    var type: String?,
 ): Parcelable

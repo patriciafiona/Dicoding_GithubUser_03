@@ -18,6 +18,8 @@ import com.path_studio.githubuser.R
 import com.path_studio.githubuser.Utils
 import com.path_studio.githubuser.adapters.CustomSuggestionsAdapter
 import com.path_studio.githubuser.databinding.ActivityMainBinding
+import com.path_studio.githubuser.entities.Search
+import com.path_studio.githubuser.entities.User
 import com.path_studio.githubuser.models.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -104,8 +106,8 @@ class MainActivity : AppCompatActivity() {
     private fun getSearchUserResult(name: String): ArrayList<User>{
         gitHubServiceitHubService.getSearchByUsername(name, ACCESS_TOKEN).enqueue(object : Callback<Search> {
             override fun onResponse(
-                    call: Call<Search>,
-                    response: Response<Search>
+                call: Call<Search>,
+                response: Response<Search>
             ) {
                 if (response.isSuccessful) {
                     searchResult = response.body() as Search
@@ -132,6 +134,7 @@ class MainActivity : AppCompatActivity() {
         val appBarConfiguration = AppBarConfiguration.Builder(
             R.id.navigation_home,
             R.id.navigation_explore,
+            R.id.navigation_favorite,
             R.id.navigation_profile,
             R.id.navigation_settings
         )

@@ -1,5 +1,6 @@
 package com.path_studio.githubuser.models
 
+import com.path_studio.githubuser.entities.*
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Header
