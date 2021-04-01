@@ -2,12 +2,11 @@ package com.path_studio.githubuser.fragments
 
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.path_studio.githubuser.helper.MappingHelper
 import com.path_studio.githubuser.Utils
 import com.path_studio.githubuser.activities.MainActivity
 import com.path_studio.githubuser.adapters.UserFavAdapter
@@ -15,6 +14,7 @@ import com.path_studio.githubuser.database.UserHelper
 import com.path_studio.githubuser.databinding.FragmentFavoriteUserBinding
 import com.path_studio.githubuser.entities.User
 import com.path_studio.githubuser.entities.UserFav
+import com.path_studio.githubuser.helper.MappingHelper
 import com.path_studio.githubuser.models.CreateAPI
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -31,7 +31,6 @@ class FavoriteUserFragment : Fragment() {
     private lateinit var adapter: UserFavAdapter
 
     companion object {
-        private const val EXTRA_USER = "EXTRA_USER"
         private const val EXTRA_USER_DETAIL = "EXTRA_USER_DETAIL"
     }
 
@@ -62,10 +61,8 @@ class FavoriteUserFragment : Fragment() {
             showLoading(true)
             readDatabase()
         } else {
-            val list = savedInstanceState.getParcelableArrayList<UserFav>(EXTRA_USER)
             val list_detail = savedInstanceState.getParcelableArrayList<User>(EXTRA_USER_DETAIL)
-            if (list != null && list_detail != null) {
-                adapter.listUser = list
+            if (list_detail != null) {
                 adapter.listDetailUser = list_detail
                 binding.rvFavUser.adapter = adapter
             }
@@ -74,7 +71,6 @@ class FavoriteUserFragment : Fragment() {
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        outState.putParcelableArrayList(EXTRA_USER, adapter.listUser)
         outState.putParcelableArrayList(EXTRA_USER_DETAIL, adapter.listDetailUser)
     }
 
@@ -89,8 +85,6 @@ class FavoriteUserFragment : Fragment() {
 
             val users = deferredUsers.await()
             if (users.size > 0) {
-                adapter.listUser = users
-
                 //get data from API and set to adapter
                 val listUserDetail: ArrayList<User> = ArrayList()
                 for(u in users){
@@ -122,7 +116,7 @@ class FavoriteUserFragment : Fragment() {
                     })
                 }
             } else {
-                adapter.listUser = ArrayList()
+                adapter.listDetailUser = ArrayList()
                 binding.rvFavUser.adapter = adapter
 
                 binding.noData.visibility = View.VISIBLE

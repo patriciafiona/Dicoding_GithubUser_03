@@ -11,8 +11,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.path_studio.githubuser.activities.DetailFollowActivity
 import com.path_studio.githubuser.adapters.ListFollowAdapter
 import com.path_studio.githubuser.databinding.FragmentFollowerBinding
-import com.path_studio.githubuser.models.MainViewModel
 import com.path_studio.githubuser.entities.User
+import com.path_studio.githubuser.models.MainViewModel
 
 class FollowerFragment : Fragment() {
 

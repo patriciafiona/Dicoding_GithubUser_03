@@ -16,8 +16,8 @@ import com.path_studio.githubuser.R
 import com.path_studio.githubuser.activities.MainActivity
 import com.path_studio.githubuser.adapters.ListTrendingRepoAdapter
 import com.path_studio.githubuser.databinding.FragmentExploreBinding
-import com.path_studio.githubuser.models.MainViewModel
 import com.path_studio.githubuser.entities.SearchRepo
+import com.path_studio.githubuser.models.MainViewModel
 
 class ExploreFragment : Fragment() {
 

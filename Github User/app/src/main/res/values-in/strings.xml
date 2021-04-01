@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Github User</string>
+    <string name="appwidget_text">Pengguna Github Favorit Saya</string>
 
     <string name="about">Tentang Kami</string>
     <string name="language">Bahasa</string>
@@ -59,6 +60,7 @@
     <string name="temp_programming_language">Java</string>
     <string name="temp_find_inspiration">Temukan inspirasi proyek melalui fitur \"Trending Now"\</string>
     <string name="temp_date">12-12-2021</string>
+    <string name="empty_text">TIDAK ADA DATA</string>
 
     <string name="my_work">Pekerjaan Saya</string>
     <string name="issues">Masalah</string>
@@ -118,4 +120,5 @@
     <string name="grey_about_icon">Ikon Tentang abu-abu</string>
     <string name="yellow_star_icon">Ikon bintang kuning</string>
     <string name="user_img">Gambar Pengguna</string>
+    <string name="widget_image">Gambar Widget</string>
 </resources>

@@ -1,5 +1,6 @@
 package com.path_studio.githubuser.activities
 
+import android.appwidget.AppWidgetManager
 import android.content.ContentValues
 import android.content.Intent
 import android.content.res.ColorStateList
@@ -17,7 +18,6 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.faltenreich.skeletonlayout.Skeleton
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.path_studio.githubuser.helper.MappingHelper
 import com.path_studio.githubuser.R
 import com.path_studio.githubuser.Utils
 import com.path_studio.githubuser.adapters.ListPopularRepoAdapter
@@ -28,9 +28,10 @@ import com.path_studio.githubuser.database.UserHelper
 import com.path_studio.githubuser.databinding.ActivityDetailUserBinding
 import com.path_studio.githubuser.entities.Repository
 import com.path_studio.githubuser.entities.User
-import com.path_studio.githubuser.entities.UserFav
 import com.path_studio.githubuser.fragments.ProfileFragment
+import com.path_studio.githubuser.helper.MappingHelper
 import com.path_studio.githubuser.models.*
+import com.path_studio.githubuser.widget.FavoriteUserWidget
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
@@ -38,6 +39,7 @@ import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+
 
 class DetailUserActivity : AppCompatActivity() {
 
@@ -71,7 +73,9 @@ class DetailUserActivity : AppCompatActivity() {
 
         //init
         showLoading(true)
-        mainViewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(MainViewModel::class.java)
+        mainViewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(
+            MainViewModel::class.java
+        )
 
         //set background animated
         setBackgroundAnimated()
@@ -86,9 +90,9 @@ class DetailUserActivity : AppCompatActivity() {
         if (savedInstanceState == null) {
             checkDatabase(data.login.toString())
         } else {
-            val list = savedInstanceState.getParcelableArrayList<UserFav>(EXTRA_STATE)
+            val list = savedInstanceState.getParcelableArrayList<User>(EXTRA_STATE)
             if (list != null) {
-                adapter.listUser = list
+                adapter.listDetailUser = list
             }
         }
     }
@@ -107,10 +111,9 @@ class DetailUserActivity : AppCompatActivity() {
                 addToDatabase(login)
             }
         }
-
     }
 
-    private fun checkDatabase(login:String): Boolean{
+    private fun checkDatabase(login: String): Boolean{
         setFloatBtnRead(false)
 
         GlobalScope.launch(Dispatchers.Main) {
@@ -126,9 +129,17 @@ class DetailUserActivity : AppCompatActivity() {
             statusFav = users.size > 0
 
             if(statusFav){
-                binding.favBtn.backgroundTintList = ColorStateList.valueOf(this@DetailUserActivity.getColor(R.color.red))
+                binding.favBtn.backgroundTintList = ColorStateList.valueOf(
+                    this@DetailUserActivity.getColor(
+                        R.color.red
+                    )
+                )
             }else{
-                binding.favBtn.backgroundTintList = ColorStateList.valueOf(this@DetailUserActivity.getColor(R.color.purple_700))
+                binding.favBtn.backgroundTintList = ColorStateList.valueOf(
+                    this@DetailUserActivity.getColor(
+                        R.color.purple_700
+                    )
+                )
             }
 
             userHelper.close()
@@ -139,7 +150,7 @@ class DetailUserActivity : AppCompatActivity() {
         return statusFav
     }
 
-    private fun addToDatabase(login:String){
+    private fun addToDatabase(login: String){
         userHelper.open()
 
         val values = ContentValues()
@@ -149,10 +160,18 @@ class DetailUserActivity : AppCompatActivity() {
 
         if (result > 0) {
             binding.favBtn.backgroundTintList = ColorStateList.valueOf(this.getColor(R.color.red))
-            Toast.makeText(this@DetailUserActivity, this.getText(R.string.success_add_fav), Toast.LENGTH_SHORT).show()
+            Toast.makeText(
+                this@DetailUserActivity,
+                this.getText(R.string.success_add_fav),
+                Toast.LENGTH_SHORT
+            ).show()
         } else {
             binding.favBtn.backgroundTintList = ColorStateList.valueOf(this.getColor(R.color.purple_700))
-            Toast.makeText(this@DetailUserActivity, this.getText(R.string.failed_add_fav), Toast.LENGTH_SHORT).show()
+            Toast.makeText(
+                this@DetailUserActivity,
+                this.getText(R.string.failed_add_fav),
+                Toast.LENGTH_SHORT
+            ).show()
         }
         userHelper.close()
     }
@@ -162,10 +181,18 @@ class DetailUserActivity : AppCompatActivity() {
         val result = userHelper.deleteByLogin(login).toLong()
         if (result > 0) {
             binding.favBtn.backgroundTintList = ColorStateList.valueOf(this.getColor(R.color.purple_700))
-            Toast.makeText(this@DetailUserActivity, this.getText(R.string.success_remove_fav), Toast.LENGTH_SHORT).show()
+            Toast.makeText(
+                this@DetailUserActivity,
+                this.getText(R.string.success_remove_fav),
+                Toast.LENGTH_SHORT
+            ).show()
         }else{
             binding.favBtn.backgroundTintList = ColorStateList.valueOf(this.getColor(R.color.red))
-            Toast.makeText(this@DetailUserActivity, this.getText(R.string.failed_remove_fav), Toast.LENGTH_SHORT).show()
+            Toast.makeText(
+                this@DetailUserActivity,
+                this.getText(R.string.failed_remove_fav),
+                Toast.LENGTH_SHORT
+            ).show()
         }
         userHelper.close()
     }
@@ -198,7 +225,7 @@ class DetailUserActivity : AppCompatActivity() {
     private fun getAndSetUserData(username: String){
         mainViewModel.setUserData(this, username)
 
-        mainViewModel.getUserData().observe(this@DetailUserActivity, {items ->
+        mainViewModel.getUserData().observe(this@DetailUserActivity, { items ->
             if (items != null) {
                 detailUser = items
                 getAndCheckMyFollowing()
@@ -219,10 +246,10 @@ class DetailUserActivity : AppCompatActivity() {
                 if (response.isSuccessful) {
                     val listMyFollowing = response.body() as ArrayList<User>
 
-                    val check = listMyFollowing.filter { it.login == detailUser.login}
-                    if (check.isNotEmpty()){
+                    val check = listMyFollowing.filter { it.login == detailUser.login }
+                    if (check.isNotEmpty()) {
                         binding.btnFollow.text = resources.getString(R.string.unfollow)
-                    }else{
+                    } else {
                         binding.btnFollow.text = resources.getString(R.string.follow)
                     }
                 }

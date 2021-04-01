@@ -8,8 +8,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.path_studio.githubuser.adapters.ListNotificationAdapter
 import com.path_studio.githubuser.databinding.ActivityNotificationBinding
-import com.path_studio.githubuser.models.MainViewModel
 import com.path_studio.githubuser.entities.Notification
+import com.path_studio.githubuser.models.MainViewModel
 
 class NotificationActivity : AppCompatActivity() {
 
