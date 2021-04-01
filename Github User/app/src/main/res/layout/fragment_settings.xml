@@ -20,22 +20,19 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/icon_account"
+            android:id="@+id/icon_about"
             style="@style/Image.30"
             android:layout_marginTop="16dp"
-            android:layout_marginEnd="8dp"
-            android:src="@drawable/ic_baseline_notifications_grey_24"
-            app:layout_constraintEnd_toStartOf="@+id/text_account"
+            android:contentDescription="@string/grey_about_icon"
+            android:src="@drawable/ic_baseline_info_black_24"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView6"
-            android:contentDescription="@string/grey_notification_icon" />
+            app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
         <TextView
-            android:id="@+id/text_account"
-            style="@style/TextContent.SettingMenu"
-            android:layout_marginStart="8dp"
+            android:id="@+id/text_about"
+            style="@style/TextContent.SettingMenu.Clickable"
             android:layout_marginTop="16dp"
-            android:text="@string/notifications"
+            android:text="@string/about"
             app:layout_constraintStart_toEndOf="@+id/icon_about"
             app:layout_constraintTop_toBottomOf="@+id/textView6"
             app:layout_constraintWidth_percent="0.9" />
@@ -44,41 +41,83 @@
             android:id="@+id/icon_language"
             style="@style/Image.30"
             android:layout_marginTop="16dp"
-            android:layout_marginEnd="8dp"
+            android:contentDescription="@string/grey_language_icon"
             android:src="@drawable/ic_baseline_language_black_24"
-            app:layout_constraintEnd_toStartOf="@+id/text_language"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/icon_account"
-            android:contentDescription="@string/grey_language_icon" />
+            app:layout_constraintTop_toBottomOf="@+id/icon_about" />
 
         <TextView
             android:id="@+id/text_language"
-            style="@style/TextContent.SettingMenu"
+            style="@style/TextContent.SettingMenu.Clickable"
             android:layout_marginTop="16dp"
             android:text="@string/language"
-            app:layout_constraintStart_toEndOf="@+id/icon_account"
-            app:layout_constraintTop_toBottomOf="@+id/icon_account"
+            app:layout_constraintStart_toEndOf="@+id/icon_language"
+            app:layout_constraintTop_toBottomOf="@+id/text_about"
             app:layout_constraintWidth_percent="0.9" />
 
         <ImageView
-            android:id="@+id/icon_about"
+            android:id="@+id/icon_notification"
             style="@style/Image.30"
             android:layout_marginTop="16dp"
-            android:layout_marginEnd="8dp"
-            android:src="@drawable/ic_baseline_info_black_24"
-            app:layout_constraintEnd_toStartOf="@+id/text_about"
+            android:contentDescription="@string/grey_notification_icon"
+            android:src="@drawable/ic_baseline_notifications_grey_24"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/icon_language"
-            android:contentDescription="@string/grey_about_icon" />
+            app:layout_constraintTop_toBottomOf="@+id/icon_language" />
 
         <TextView
-            android:id="@+id/text_about"
-            style="@style/TextContent.SettingMenu"
+            android:id="@+id/text_notification"
+            style="@style/TextContent.SettingMenu.Clickable"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
-            android:text="@string/about"
-            app:layout_constraintStart_toEndOf="@+id/icon_about"
-            app:layout_constraintTop_toBottomOf="@+id/icon_language"
+            android:text="@string/notifications"
+            app:layout_constraintStart_toEndOf="@+id/icon_notification"
+            app:layout_constraintTop_toBottomOf="@+id/text_language"
             app:layout_constraintWidth_percent="0.9" />
+
+        <ImageView
+            android:id="@+id/icon_reminder"
+            style="@style/Image.30"
+            android:layout_marginTop="16dp"
+            android:contentDescription="@string/grey_reminder_icon"
+            android:src="@drawable/ic_baseline_notifications_active_grey_24"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/icon_notification" />
+
+        <TextView
+            android:id="@+id/text_reminder"
+            style="@style/TextContent.SettingMenu"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/reminder"
+            app:layout_constraintStart_toEndOf="@+id/icon_reminder"
+            app:layout_constraintTop_toBottomOf="@+id/text_notification"
+            app:layout_constraintWidth_percent="0.9" />
+
+        <TextView
+            android:id="@+id/textView13"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/reminder_detail"
+            android:textColor="@color/purple_300"
+            android:textSize="12sp"
+            android:textStyle="italic"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/icon_reminder"
+            app:layout_constraintWidth_percent="0.6" />
+
+        <Switch
+            android:id="@+id/reminder_switch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:textOff="@string/off"
+            android:textOn="@string/on"
+            app:layout_constraintStart_toEndOf="@+id/textView13"
+            app:layout_constraintTop_toBottomOf="@+id/text_reminder"
+            tools:ignore="UseSwitchCompatOrMaterialXml" />
 
         <ImageView
             android:id="@+id/imageView2"
@@ -91,7 +130,7 @@
             android:src="@drawable/github_logo_txt"
             app:layout_constraintBottom_toTopOf="@+id/textView2"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/icon_about"
+            app:layout_constraintTop_toBottomOf="@+id/textView13"
             app:layout_constraintWidth_percent="0.2"
             android:contentDescription="@string/github_logo_img" />
 

@@ -6,9 +6,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.path_studio.githubuser.MappingHelper
+import com.path_studio.githubuser.helper.MappingHelper
 import com.path_studio.githubuser.Utils
 import com.path_studio.githubuser.activities.MainActivity
 import com.path_studio.githubuser.adapters.UserFavAdapter
@@ -17,7 +16,6 @@ import com.path_studio.githubuser.databinding.FragmentFavoriteUserBinding
 import com.path_studio.githubuser.entities.User
 import com.path_studio.githubuser.entities.UserFav
 import com.path_studio.githubuser.models.CreateAPI
-import com.path_studio.githubuser.models.MainViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async

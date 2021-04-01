@@ -1,4 +1,4 @@
-package com.path_studio.githubuser
+package com.path_studio.githubuser.helper
 
 import android.database.Cursor
 import com.path_studio.githubuser.database.DatabaseContract

@@ -17,7 +17,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.faltenreich.skeletonlayout.Skeleton
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.path_studio.githubuser.MappingHelper
+import com.path_studio.githubuser.helper.MappingHelper
 import com.path_studio.githubuser.R
 import com.path_studio.githubuser.Utils
 import com.path_studio.githubuser.adapters.ListPopularRepoAdapter

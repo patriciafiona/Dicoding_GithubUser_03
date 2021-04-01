@@ -14,6 +14,8 @@
     <string name="starred_repositories">Repositori Berbintang</string>
     <string name="no_data_found">Data Tidak Ditemukan</string>
     <string name="trending_now">Sedang Tren Sekarang</string>
+    <string name="reminder">Pengingat</string>
+    <string name="reminder_detail">Setel pengingat harian untuk kembali ke aplikasi yang berjalan pada pukul 09.00</string>
 
     <string name="app_version">Github User untuk perangkat mobile v1.0.00</string>
 
@@ -76,6 +78,16 @@
     <string name="not_following_anyone">Pengguna tidak mengikuti siapapun</string>
     <string name="dont_have_followers">Pengguna tidak punya pengikut</string>
 
+    <string name="off">MATI</string>
+    <string name="on">HIDUP</string>
+
+    <string name="daily_reminder">Pengingat Harian</string>
+    <string name="daily_reminder_message">Hai, sudahkah anda mengecek aplikasi Github User hari ini?
+        Ayo cek Github User sekarang juga untuk melihat informasi terbaru.</string>
+    <string name="daily_reminder_time">09:00</string>
+    <string name="success_set_reminder">Alarm berulang berhasil ditambahkan</string>
+    <string name="success_remove_reminder">Alarm berulang berhasil dihapus</string>
+
     <!-- Image Description -->
     <string name="about_background_img">Gambar Latar Belakang Halaman About</string>
     <string name="white_wave_img">Gambar Gelombang Putih</string>
@@ -101,6 +113,7 @@
     <string name="grey_dot">Titik abu-abu</string>
     <string name="white_star_icon">Ikon bintang putih</string>
     <string name="grey_notification_icon">Ikon Notifikasi abu-abu</string>
+    <string name="grey_reminder_icon">Ikon Pengingat abu-abu</string>
     <string name="grey_language_icon">Ikon Bahasa abu-abu</string>
     <string name="grey_about_icon">Ikon Tentang abu-abu</string>
     <string name="yellow_star_icon">Ikon bintang kuning</string>

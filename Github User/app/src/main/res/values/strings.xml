@@ -13,6 +13,8 @@
     <string name="starred_repositories">Starred Repositories</string>
     <string name="no_data_found">No Data Found</string>
     <string name="trending_now">Trending Now</string>
+    <string name="reminder">Reminder</string>
+    <string name="reminder_detail">Set a daily reminder to return to running applications at 09.00 AM</string>
 
     <string name="app_version">Github User for mobile v1.0.00</string>
 
@@ -75,6 +77,16 @@
     <string name="not_following_anyone">User doesn\'t following anyone</string>
     <string name="dont_have_followers">User doesn\'t have any followers</string>
 
+    <string name="off">OFF</string>
+    <string name="on">ON</string>
+
+    <string name="daily_reminder">Daily Reminder</string>
+    <string name="daily_reminder_message">Hi, have you checked the Github User application today?
+        Let\'s check Github User right now to see the latest information.</string>
+    <string name="daily_reminder_time">09:00</string>
+    <string name="success_set_reminder">Repeating alarm set up</string>
+    <string name="success_remove_reminder">Repeating alarm is removed</string>
+
     <!-- Image Description -->
     <string name="about_background_img">About Background Img</string>
     <string name="white_wave_img">White Wave Img</string>
@@ -100,6 +112,7 @@
     <string name="grey_dot">Grey Dot</string>
     <string name="white_star_icon">White Star Icon</string>
     <string name="grey_notification_icon">Grey Notification Icon</string>
+    <string name="grey_reminder_icon">Grey Reminder Icon</string>
     <string name="grey_language_icon">Grey Language Icon</string>
     <string name="grey_about_icon">Grey About Icon</string>
     <string name="yellow_star_icon">Yellow Star Icon</string>
