@@ -1,6 +1,5 @@
 package com.path_studio.githubuser.activities
 
-import android.appwidget.AppWidgetManager
 import android.content.ContentValues
 import android.content.Intent
 import android.content.res.ColorStateList
@@ -137,7 +136,7 @@ class DetailUserActivity : AppCompatActivity() {
             }else{
                 binding.favBtn.backgroundTintList = ColorStateList.valueOf(
                     this@DetailUserActivity.getColor(
-                        R.color.purple_700
+                        R.color.grey_300
                     )
                 )
             }
@@ -166,7 +165,7 @@ class DetailUserActivity : AppCompatActivity() {
                 Toast.LENGTH_SHORT
             ).show()
         } else {
-            binding.favBtn.backgroundTintList = ColorStateList.valueOf(this.getColor(R.color.purple_700))
+            binding.favBtn.backgroundTintList = ColorStateList.valueOf(this.getColor(R.color.grey_300))
             Toast.makeText(
                 this@DetailUserActivity,
                 this.getText(R.string.failed_add_fav),
@@ -180,7 +179,7 @@ class DetailUserActivity : AppCompatActivity() {
         userHelper.open()
         val result = userHelper.deleteByLogin(login).toLong()
         if (result > 0) {
-            binding.favBtn.backgroundTintList = ColorStateList.valueOf(this.getColor(R.color.purple_700))
+            binding.favBtn.backgroundTintList = ColorStateList.valueOf(this.getColor(R.color.grey_300))
             Toast.makeText(
                 this@DetailUserActivity,
                 this.getText(R.string.success_remove_fav),

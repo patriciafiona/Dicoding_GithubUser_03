@@ -1,5 +1,6 @@
 package com.path_studio.githubuser.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -24,6 +25,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
+
 class FavoriteUserFragment : Fragment() {
 
     private var _binding: FragmentFavoriteUserBinding? = null
@@ -32,11 +34,12 @@ class FavoriteUserFragment : Fragment() {
 
     companion object {
         private const val EXTRA_USER_DETAIL = "EXTRA_USER_DETAIL"
+        private const val EXTRA_USER_FAV = "EXTRA_USER_FAV"
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater, container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentFavoriteUserBinding.inflate(inflater, container, false)
         val view = binding.root
@@ -44,7 +47,6 @@ class FavoriteUserFragment : Fragment() {
         binding.rvFavUser.layoutManager = LinearLayoutManager(activity)
         binding.rvFavUser.setHasFixedSize(true)
         adapter = UserFavAdapter(activity as MainActivity)
-
         return view
     }
 
@@ -61,17 +63,37 @@ class FavoriteUserFragment : Fragment() {
             showLoading(true)
             readDatabase()
         } else {
-            val list_detail = savedInstanceState.getParcelableArrayList<User>(EXTRA_USER_DETAIL)
-            if (list_detail != null) {
-                adapter.listDetailUser = list_detail
-                binding.rvFavUser.adapter = adapter
-            }
+            checkCurrentData(savedInstanceState)
         }
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         outState.putParcelableArrayList(EXTRA_USER_DETAIL, adapter.listDetailUser)
+        outState.putParcelableArrayList(EXTRA_USER_FAV, adapter.listUserDb)
+    }
+
+    private  fun checkCurrentData(getSavedInstanceState: Bundle) {
+        val listUserFav = getSavedInstanceState.getParcelableArrayList<UserFav>(EXTRA_USER_FAV)
+        val listDetail = getSavedInstanceState.getParcelableArrayList<User>(EXTRA_USER_DETAIL)
+
+        val currentData = getCurrentDatabaseData()
+
+        Log.e("current Data",  currentData.toString())
+        Log.e("before data", listUserFav.toString())
+
+        if (listUserFav != null) {
+            //check if current data in db change or not
+            if(currentData.containsAll(listUserFav) && listUserFav.containsAll(currentData) ){
+                if (listDetail != null) {
+                    adapter.listDetailUser = listDetail
+                    binding.rvFavUser.adapter = adapter
+                }
+            }else{
+                showLoading(true)
+                readDatabase()
+            }
+        }
     }
 
     private fun readDatabase(){
@@ -84,19 +106,21 @@ class FavoriteUserFragment : Fragment() {
             }
 
             val users = deferredUsers.await()
+            adapter.listUserDb = users
+
             if (users.size > 0) {
                 //get data from API and set to adapter
                 val listUserDetail: ArrayList<User> = ArrayList()
                 for(u in users){
                     CreateAPI.create().getUserDetail(
-                        u.login,
-                        ProfileFragment.ACCESS_TOKEN
+                            u.login,
+                            ProfileFragment.ACCESS_TOKEN
                     ).enqueue(object : Callback<User> {
                         override fun onResponse(call: Call<User>, response: Response<User>) {
                             if (response.isSuccessful) {
                                 listUserDetail.add(response.body() as User)
 
-                                if(listUserDetail.size == users.size) {
+                                if (listUserDetail.size == users.size) {
                                     adapter.listDetailUser = listUserDetail
 
                                     binding.rvFavUser.adapter = adapter
@@ -126,6 +150,24 @@ class FavoriteUserFragment : Fragment() {
 
             userHelper.close()
         }
+    }
+
+    private fun getCurrentDatabaseData(): ArrayList<UserFav>{
+        var usersFav = ArrayList<UserFav>()
+        GlobalScope.launch(Dispatchers.Main) {
+            val userHelper = UserHelper.getInstance((activity as MainActivity).applicationContext)
+            userHelper.open()
+            
+            val deferredUsers = async(Dispatchers.IO) {
+                val cursor = userHelper.queryAll()
+                MappingHelper.mapCursorToArrayList(cursor)
+            }
+
+            val users = deferredUsers.await()
+
+            userHelper.close()
+        }
+        return usersFav
     }
 
     private fun showLoading(state: Boolean) {

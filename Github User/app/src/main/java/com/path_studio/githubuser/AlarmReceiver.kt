@@ -1,9 +1,6 @@
 package com.path_studio.githubuser
 
-import android.app.AlarmManager
-import android.app.NotificationChannel
-import android.app.NotificationManager
-import android.app.PendingIntent
+import android.app.*
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
@@ -45,8 +42,8 @@ class AlarmReceiver : BroadcastReceiver() {
         val alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
 
         val icon = BitmapFactory.decodeResource(
-            context.resources,
-            R.drawable.github_icon
+                context.resources,
+                R.drawable.github_icon
         )
 
         val builder = NotificationCompat.Builder(context, CHANNEL_ID)
@@ -55,8 +52,8 @@ class AlarmReceiver : BroadcastReceiver() {
                 .setContentText(context.getText(R.string.daily_reminder))
                 .setLargeIcon(icon)
                 .setStyle(
-                    NotificationCompat.BigTextStyle()
-                        .bigText(message)
+                        NotificationCompat.BigTextStyle()
+                                .bigText(message)
                 )
                 .setColor(ContextCompat.getColor(context, android.R.color.transparent))
                 .setVibrate(longArrayOf(1000, 1000, 1000, 1000, 1000))
@@ -67,8 +64,8 @@ class AlarmReceiver : BroadcastReceiver() {
                 or Intent.FLAG_ACTIVITY_SINGLE_TOP)
 
         val intent = PendingIntent.getActivity(
-            context, 0,
-            splashIntent, 0
+                context, 0,
+                splashIntent, 0
         )
 
         builder.setContentIntent(intent)
@@ -77,9 +74,9 @@ class AlarmReceiver : BroadcastReceiver() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             /* Create or update. */
             val channel = NotificationChannel(
-                CHANNEL_ID,
-                CHANNEL_NAME,
-                NotificationManager.IMPORTANCE_DEFAULT
+                    CHANNEL_ID,
+                    CHANNEL_NAME,
+                    NotificationManager.IMPORTANCE_DEFAULT
             )
 
             channel.enableVibration(true)
@@ -90,6 +87,7 @@ class AlarmReceiver : BroadcastReceiver() {
             notificationManagerCompat.createNotificationChannel(channel)
         }
 
+        builder.setAutoCancel(true)
         val notification = builder.build()
         notificationManagerCompat.notify(notifId, notification)
     }
@@ -110,10 +108,10 @@ class AlarmReceiver : BroadcastReceiver() {
 
         val pendingIntent = PendingIntent.getBroadcast(context, ID_REPEATING, intent, 0)
         alarmManager.setInexactRepeating(
-            AlarmManager.RTC_WAKEUP,
-            calendar.timeInMillis,
-            AlarmManager.INTERVAL_DAY,
-            pendingIntent
+                AlarmManager.RTC_WAKEUP,
+                calendar.timeInMillis,
+                AlarmManager.INTERVAL_DAY,
+                pendingIntent
         )
 
         Toast.makeText(context, context.getText(R.string.success_set_reminder), Toast.LENGTH_SHORT).show()
@@ -127,9 +125,9 @@ class AlarmReceiver : BroadcastReceiver() {
         pendingIntent.cancel()
         alarmManager.cancel(pendingIntent)
         Toast.makeText(
-            context,
-            context.getText(R.string.success_remove_reminder),
-            Toast.LENGTH_SHORT
+                context,
+                context.getText(R.string.success_remove_reminder),
+                Toast.LENGTH_SHORT
         ).show()
     }
 
@@ -139,10 +137,10 @@ class AlarmReceiver : BroadcastReceiver() {
         val requestCode = ID_REPEATING
 
         return PendingIntent.getBroadcast(
-            context,
-            requestCode,
-            intent,
-            PendingIntent.FLAG_NO_CREATE
+                context,
+                requestCode,
+                intent,
+                PendingIntent.FLAG_NO_CREATE
         ) != null
     }
 

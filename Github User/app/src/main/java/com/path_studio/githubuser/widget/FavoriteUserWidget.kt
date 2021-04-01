@@ -50,7 +50,6 @@ class FavoriteUserWidget : AppWidgetProvider() {
                     val listUserAvatar: ArrayList<String> = ArrayList()
                     val listUserLogin: ArrayList<String> = ArrayList()
                     for(u in users){
-                        Log.e("username", u.login.toString())
                         CreateAPI.create().getUserDetail(
                             u.login,
                             ProfileFragment.ACCESS_TOKEN

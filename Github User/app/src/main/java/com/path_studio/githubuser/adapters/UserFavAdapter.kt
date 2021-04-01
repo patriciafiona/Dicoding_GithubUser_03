@@ -16,6 +16,17 @@ import com.path_studio.githubuser.entities.User
 import com.path_studio.githubuser.entities.UserFav
 
 class UserFavAdapter(private val activity: Activity) : RecyclerView.Adapter<UserFavAdapter.UserFavViewHolder>() {
+    //for on resume check process
+    var listUserDb = ArrayList<UserFav>()
+        set(listUserDb) {
+            if (listUserDb.size > 0) {
+                this.listUserDb.clear()
+            }
+            this.listUserDb.addAll(listUserDb)
+            notifyDataSetChanged()
+        }
+
+    //for display data from the api
     var listDetailUser = ArrayList<User>()
         set(listDetailUser) {
             if (listDetailUser.size > 0) {
