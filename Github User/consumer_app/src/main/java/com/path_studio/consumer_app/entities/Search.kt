@@ -1,4 +1,4 @@
-package com.path_studio.consumer_app.entity
+package com.path_studio.consumer_app.entities
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize

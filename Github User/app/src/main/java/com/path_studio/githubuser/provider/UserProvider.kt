@@ -1,4 +1,4 @@
-package com.path_studio.githubuser
+package com.path_studio.githubuser.provider
 
 import android.content.ContentProvider
 import android.content.ContentValues
@@ -6,7 +6,6 @@ import android.content.Context
 import android.content.UriMatcher
 import android.database.Cursor
 import android.net.Uri
-import android.util.Log
 import com.path_studio.githubuser.database.DatabaseContract.AUTHORITY
 import com.path_studio.githubuser.database.DatabaseContract.UserColumns.Companion.CONTENT_URI
 import com.path_studio.githubuser.database.DatabaseContract.UserColumns.Companion.TABLE_NAME

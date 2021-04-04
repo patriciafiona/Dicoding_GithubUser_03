@@ -1,6 +1,6 @@
 package com.path_studio.consumer_app
 
-import com.path_studio.consumer_app.entity.User
+import com.path_studio.consumer_app.entities.User
 
 class CategoriesComparator: Comparator<User> {
     override fun compare(category1: User, category2: User): Int {

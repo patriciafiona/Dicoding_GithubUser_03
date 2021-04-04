@@ -14,7 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GithubUser">
         <provider
-            android:name=".UserProvider"
+            android:name=".provider.UserProvider"
             android:authorities="com.path_studio.githubuser"
             android:enabled="true"
             android:exported="true"

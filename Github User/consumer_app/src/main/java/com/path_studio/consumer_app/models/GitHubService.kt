@@ -1,7 +1,7 @@
 package com.path_studio.githubuser.models
 
 import android.app.Notification
-import com.path_studio.consumer_app.entity.*
+import com.path_studio.consumer_app.entities.*
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Header

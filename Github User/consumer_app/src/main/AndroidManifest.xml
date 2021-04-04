@@ -23,6 +23,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".activities.DetailUserActivity" />
+        <activity android:name=".activities.DetailFollowActivity" />
     </application>
 
 </manifest>

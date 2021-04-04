@@ -2,7 +2,6 @@ package com.path_studio.consumer_app.adapters
 
 import android.app.Activity
 import android.content.Intent
-import android.content.Intent.EXTRA_USER
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,8 +12,8 @@ import com.path_studio.consumer_app.CustomOnItemClickListener
 import com.path_studio.consumer_app.R
 import com.path_studio.consumer_app.activities.DetailUserActivity
 import com.path_studio.consumer_app.databinding.ItemRowFavUserBinding
-import com.path_studio.consumer_app.entity.User
-import com.path_studio.consumer_app.entity.UserFav
+import com.path_studio.consumer_app.entities.User
+import com.path_studio.consumer_app.entities.UserFav
 
 class UserFavAdapter(private val activity: Activity) : RecyclerView.Adapter<UserFavAdapter.UserFavViewHolder>() {
     //for on resume check process

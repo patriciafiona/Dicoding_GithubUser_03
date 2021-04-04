@@ -27,12 +27,12 @@ import retrofit2.Response
 import java.util.*
 import kotlin.collections.ArrayList
 
-
 class FavoriteUserFragment : Fragment() {
 
     private var _binding: FragmentFavoriteUserBinding? = null
     private val binding get() = _binding as FragmentFavoriteUserBinding
     private lateinit var adapter: UserFavAdapter
+    private var firstLoad: Boolean = true
 
     companion object {
         private const val EXTRA_USER_DETAIL = "EXTRA_USER_DETAIL"
@@ -61,6 +61,7 @@ class FavoriteUserFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        firstLoad = true
         if (savedInstanceState == null) {
             showLoading(true)
             readDatabase()
@@ -104,10 +105,18 @@ class FavoriteUserFragment : Fragment() {
 
                         binding.noData.visibility = View.GONE
                         binding.noDataTxt.visibility = View.GONE
+                        binding.rvFavUser.visibility = View.VISIBLE
                     }
                 }else{
                     showLoading(true)
                     readDatabase()
+                }
+            }else {
+                if(!firstLoad){
+                    binding.noData.visibility = View.VISIBLE
+                    binding.noDataTxt.visibility = View.VISIBLE
+                    binding.rvFavUser.visibility = View.GONE
+                    firstLoad = false
                 }
             }
         }
@@ -138,6 +147,7 @@ class FavoriteUserFragment : Fragment() {
 
                                     binding.noData.visibility = View.GONE
                                     binding.noDataTxt.visibility = View.GONE
+                                    binding.rvFavUser.visibility = View.VISIBLE
 
                                     showLoading(false)
                                 }
@@ -156,6 +166,7 @@ class FavoriteUserFragment : Fragment() {
 
                 binding.noData.visibility = View.VISIBLE
                 binding.noDataTxt.visibility = View.VISIBLE
+                binding.rvFavUser.visibility = View.GONE
                 showLoading(false)
             }
 
@@ -168,9 +179,7 @@ class FavoriteUserFragment : Fragment() {
             val cursor = (activity as MainActivity).contentResolver.query(CONTENT_URI, null, null, null, null)
             MappingHelper.mapCursorToArrayList(cursor)
         }
-
         val users = deferredUsers.await()
-
         users
     }
 

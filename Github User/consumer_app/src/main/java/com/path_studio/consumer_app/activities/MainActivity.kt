@@ -1,25 +1,13 @@
 package com.path_studio.consumer_app.activities
 
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
-import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.Navigation
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.path_studio.consumer_app.R
-import com.path_studio.consumer_app.Utils
 import com.path_studio.consumer_app.databinding.ActivityMainBinding
-import com.path_studio.consumer_app.entity.Search
-import com.path_studio.consumer_app.entity.User
-import com.path_studio.githubuser.models.*
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 
 class MainActivity : AppCompatActivity() {

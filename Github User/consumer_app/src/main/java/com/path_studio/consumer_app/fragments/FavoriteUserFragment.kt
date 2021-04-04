@@ -1,13 +1,32 @@
 package com.path_studio.consumer_app.fragments
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.path_studio.consumer_app.BuildConfig
+import com.path_studio.consumer_app.CategoriesComparator
+import com.path_studio.consumer_app.Utils
+import com.path_studio.consumer_app.activities.MainActivity
 import com.path_studio.consumer_app.adapters.UserFavAdapter
 import com.path_studio.consumer_app.databinding.FragmentFavoriteUserBinding
+import com.path_studio.consumer_app.entities.User
+import com.path_studio.consumer_app.entities.UserFav
+import com.path_studio.githubuser.database.DatabaseContract
+import com.path_studio.githubuser.helper.MappingHelper
+import com.path_studio.githubuser.models.CreateAPI
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.runBlocking
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import java.util.*
+import kotlin.collections.ArrayList
 
 
 class FavoriteUserFragment : Fragment() {
@@ -15,6 +34,7 @@ class FavoriteUserFragment : Fragment() {
     private var _binding: FragmentFavoriteUserBinding? = null
     private val binding get() = _binding as FragmentFavoriteUserBinding
     private lateinit var adapter: UserFavAdapter
+    private var firstLoad: Boolean = true
 
     companion object {
         private const val EXTRA_USER_DETAIL = "EXTRA_USER_DETAIL"
@@ -30,14 +50,16 @@ class FavoriteUserFragment : Fragment() {
         _binding = FragmentFavoriteUserBinding.inflate(inflater, container, false)
         val view = binding.root
 
-        /*binding.rvFavUser.layoutManager = LinearLayoutManager(activity)
+        binding.rvFavUser.layoutManager = LinearLayoutManager(activity)
         binding.rvFavUser.setHasFixedSize(true)
-        adapter = UserFavAdapter(activity as MainActivity)*/
+        adapter = UserFavAdapter(activity as MainActivity)
+
         return view
     }
 
-    /*override fun onActivityCreated(savedInstanceState: Bundle?) {
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        firstLoad = true
         if (savedInstanceState == null) {
             showLoading(true)
             readDatabase()
@@ -81,10 +103,18 @@ class FavoriteUserFragment : Fragment() {
 
                         binding.noData.visibility = View.GONE
                         binding.noDataTxt.visibility = View.GONE
+                        binding.rvFavUser.visibility = View.VISIBLE
                     }
                 }else{
                     showLoading(true)
                     readDatabase()
+                }
+            }else {
+                if(!firstLoad){
+                    binding.noData.visibility = View.VISIBLE
+                    binding.noDataTxt.visibility = View.VISIBLE
+                    binding.rvFavUser.visibility = View.GONE
+                    firstLoad = false
                 }
             }
         }
@@ -115,6 +145,7 @@ class FavoriteUserFragment : Fragment() {
 
                                     binding.noData.visibility = View.GONE
                                     binding.noDataTxt.visibility = View.GONE
+                                    binding.rvFavUser.visibility = View.VISIBLE
 
                                     showLoading(false)
                                 }
@@ -133,6 +164,7 @@ class FavoriteUserFragment : Fragment() {
 
                 binding.noData.visibility = View.VISIBLE
                 binding.noDataTxt.visibility = View.VISIBLE
+                binding.rvFavUser.visibility = View.GONE
                 showLoading(false)
             }
 
@@ -141,16 +173,12 @@ class FavoriteUserFragment : Fragment() {
     }
 
     private suspend fun getCurrentUserFav(): ArrayList<UserFav> = coroutineScope{
-        val userHelper = UserHelper.getInstance((activity as MainActivity).applicationContext)
-        userHelper.open()
-
         val deferredUsers = async(Dispatchers.IO) {
-            val cursor = userHelper.queryAll()
+            val cursor = (activity as MainActivity).contentResolver.query(DatabaseContract.UserColumns.CONTENT_URI, null, null, null, null)
             MappingHelper.mapCursorToArrayList(cursor)
         }
 
         val users = deferredUsers.await()
-        userHelper.close()
 
         users
     }
@@ -161,6 +189,6 @@ class FavoriteUserFragment : Fragment() {
         } else {
             binding.progressBar.visibility = View.GONE
         }
-    }*/
+    }
 
 }

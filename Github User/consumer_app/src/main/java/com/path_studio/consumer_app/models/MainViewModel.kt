@@ -7,11 +7,12 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.path_studio.consumer_app.Utils
-import com.path_studio.consumer_app.entity.Organization
-import com.path_studio.consumer_app.entity.Repository
-import com.path_studio.consumer_app.entity.SearchRepo
-import com.path_studio.consumer_app.entity.User
-import com.path_studio.consumer_app.fragments.FavoriteUserFragment
+import com.path_studio.consumer_app.entities.Organization
+import com.path_studio.consumer_app.entities.Repository
+import com.path_studio.consumer_app.entities.SearchRepo
+import com.path_studio.consumer_app.entities.User
+import com.path_studio.consumer_app.fragments.FavoriteUserFragment.Companion.ACCESS_TOKEN
+import com.path_studio.consumer_app.fragments.FavoriteUserFragment.Companion.MY_USERNAME
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -32,7 +33,7 @@ class MainViewModel: ViewModel() {
         val lastWeek:String = Utils.getDaysAgo(7)
         val query = "created:>$lastWeek"
 
-        CreateAPI.create().getTrendingRepo(query, FavoriteUserFragment.ACCESS_TOKEN).enqueue(object :
+        CreateAPI.create().getTrendingRepo(query, ACCESS_TOKEN).enqueue(object :
             Callback<SearchRepo> {
             override fun onResponse(
                 call: Call<SearchRepo>,
@@ -55,7 +56,7 @@ class MainViewModel: ViewModel() {
         var status = false
         CreateAPI.create().getUserStarredRepositories(
             username,
-            FavoriteUserFragment.ACCESS_TOKEN
+           ACCESS_TOKEN
         ).enqueue(object : Callback<List<Repository>> {
             override fun onResponse(
                 call: Call<List<Repository>>,
@@ -83,7 +84,7 @@ class MainViewModel: ViewModel() {
     fun setStarredRepository(context: Context, username: String){
         CreateAPI.create().getUserStarredRepositories(
             username,
-            FavoriteUserFragment.ACCESS_TOKEN
+            ACCESS_TOKEN
         ).enqueue(object : Callback<List<Repository>> {
             override fun onResponse(
                 call: Call<List<Repository>>,
@@ -106,7 +107,7 @@ class MainViewModel: ViewModel() {
         var status = false
         CreateAPI.create().getUserDetail(
             username,
-            FavoriteUserFragment.ACCESS_TOKEN
+            ACCESS_TOKEN
         ).enqueue(object : Callback<User> {
             override fun onResponse(call: Call<User>, response: Response<User>) {
                 if (response.isSuccessful) {
@@ -130,7 +131,7 @@ class MainViewModel: ViewModel() {
     fun setUserData(context: Context, username: String){
         CreateAPI.create().getUserDetail(
             username,
-            FavoriteUserFragment.ACCESS_TOKEN
+            ACCESS_TOKEN
         ).enqueue(object : Callback<User> {
             override fun onResponse(call: Call<User>, response: Response<User>) {
                 if (response.isSuccessful) {
@@ -148,8 +149,8 @@ class MainViewModel: ViewModel() {
     fun setUserOrganization(context: Context, showDialog: Boolean): Boolean{
         var status = false
         CreateAPI.create().getUserOrganizations(
-            FavoriteUserFragment.MY_USERNAME,
-            FavoriteUserFragment.ACCESS_TOKEN
+            MY_USERNAME,
+            ACCESS_TOKEN
         ).enqueue(object : Callback<List<Organization>> {
             override fun onResponse(
                 call: Call<List<Organization>>,
@@ -175,7 +176,7 @@ class MainViewModel: ViewModel() {
     }
 
     fun setNotification(context: Context){
-        CreateAPI.create().getMyNotifications(FavoriteUserFragment.ACCESS_TOKEN).enqueue(object :
+        CreateAPI.create().getMyNotifications(ACCESS_TOKEN).enqueue(object :
             Callback<List<Notification>> {
             override fun onResponse(
                 call: Call<List<Notification>>,
@@ -197,7 +198,7 @@ class MainViewModel: ViewModel() {
     fun setFollowing(context: Context, username: String){
         CreateAPI.create().getUserFollowing(
             username,
-            FavoriteUserFragment.ACCESS_TOKEN
+            ACCESS_TOKEN
         ).enqueue(object : Callback<List<User>> {
             override fun onResponse(call: Call<List<User>>, response: Response<List<User>>) {
                 if (response.isSuccessful) {
@@ -215,7 +216,7 @@ class MainViewModel: ViewModel() {
     fun setFollowers(context: Context, username: String){
         CreateAPI.create().getUserFollowers(
             username,
-            FavoriteUserFragment.ACCESS_TOKEN
+            ACCESS_TOKEN
         ).enqueue(object : Callback<List<User>> {
             override fun onResponse(call: Call<List<User>>, response: Response<List<User>>) {
                 if (response.isSuccessful) {
