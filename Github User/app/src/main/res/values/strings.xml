@@ -4,7 +4,6 @@
 
     <string name="about">About</string>
     <string name="language">Language</string>
-    <string name="account">Account</string>
     <string name="popular">Popular</string>
     <string name="repositories">Repositories</string>
     <string name="organizations">Organization</string>
@@ -19,9 +18,6 @@
 
     <string name="app_version">Github User for mobile v1.0.00</string>
 
-    <string name="search">Search</string>
-    <string name="search_hint">Search by username</string>
-
     <string name="bottom_nav_txt_01">Home</string>
     <string name="bottom_nav_txt_02">Explore</string>
     <string name="bottom_nav_txt_03">Profile</string>
@@ -33,13 +29,11 @@
     <string name="unfollow">Unfollow</string>
 
     <string name="favorite">Favorite</string>
-    <string name="unfavorite">Unfavorite</string>
     <string name="success_add_fav">Success to Add User to Favorite</string>
     <string name="failed_add_fav">Failed add User to Favorite</string>
     <string name="success_remove_fav">Success to Remove User from Favorite</string>
     <string name="failed_remove_fav">Failed Remove User from Favorite</string>
     <string name="your_favorite_user">Your Favorite User</string>
-    <string name="added_at">Added at:</string>
 
     <!-- Temporary text -->
     <string name="temp_name">Name here…</string>
@@ -58,7 +52,6 @@
     <string name="temp_days">8d</string>
     <string name="temp_programming_language">Java</string>
     <string name="temp_find_inspiration">Find project inspiration through the \"Trending Now\" feature</string>
-    <string name="temp_date">12-12-2021</string>
     <string name="empty_text">NO DATA</string>
 
     <string name="my_work">My Work</string>
@@ -68,7 +61,6 @@
     <string name="favorites">Favorites</string>
     <string name="favorite_detail">Add favorite repositories for quick access at any time, without having to search</string>
     <string name="add_repositories">Add Repositories</string>
-    <string name="chartDetail">Your profile contributions graph is a record of contributions you\'ve made to GitHub repositories.</string>
 
     <string name="failed_text">"Failed to get data from server. Please try again."</string>
 

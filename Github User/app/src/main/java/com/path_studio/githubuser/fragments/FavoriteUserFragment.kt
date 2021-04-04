@@ -1,9 +1,6 @@
 package com.path_studio.githubuser.fragments
 
-import android.database.ContentObserver
 import android.os.Bundle
-import android.os.Handler
-import android.os.HandlerThread
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -20,7 +17,10 @@ import com.path_studio.githubuser.entities.User
 import com.path_studio.githubuser.entities.UserFav
 import com.path_studio.githubuser.helper.MappingHelper
 import com.path_studio.githubuser.models.CreateAPI
-import kotlinx.coroutines.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.runBlocking
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

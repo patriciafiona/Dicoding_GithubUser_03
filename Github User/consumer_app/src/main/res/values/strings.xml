@@ -1,30 +1,13 @@
 <resources>
     <string name="app_name">Favorite Github User</string>
-    <string name="appwidget_text">My Favorite Github User</string>
 
-    <string name="about">About</string>
     <string name="language">Language</string>
-    <string name="account">Account</string>
-    <string name="popular">Popular</string>
-    <string name="repositories">Repositories</string>
-    <string name="organizations">Organization</string>
-    <string name="starred">Starred</string>
-    <string name="notifications">Notifications</string>
     <string name="details">Details</string>
     <string name="starred_repositories">Starred Repositories</string>
     <string name="no_data_found">No Data Found</string>
-    <string name="trending_now">Trending Now</string>
-    <string name="reminder">Reminder</string>
-    <string name="reminder_detail">Set a daily reminder to return to running applications at 09.00 AM</string>
 
     <string name="app_version">Github User for mobile v1.0.00</string>
 
-    <string name="search">Search</string>
-    <string name="search_hint">Search by username</string>
-
-    <string name="bottom_nav_txt_01">Home</string>
-    <string name="bottom_nav_txt_02">Explore</string>
-    <string name="bottom_nav_txt_03">Profile</string>
     <string name="bottom_nav_txt_04">Settings</string>
 
     <string name="follower">Followers</string>
@@ -33,13 +16,11 @@
     <string name="unfollow">Unfollow</string>
 
     <string name="favorite">Favorite</string>
-    <string name="unfavorite">Unfavorite</string>
     <string name="success_add_fav">Success to Add User to Favorite</string>
     <string name="failed_add_fav">Failed add User to Favorite</string>
     <string name="success_remove_fav">Success to Remove User from Favorite</string>
     <string name="failed_remove_fav">Failed Remove User from Favorite</string>
     <string name="your_favorite_user">Your Favorite User</string>
-    <string name="added_at">Added at:</string>
 
     <!-- Temporary text -->
     <string name="temp_name">Name here…</string>
@@ -51,50 +32,14 @@
     <string name="temp_repo_name">Repository Name</string>
     <string name="temp_repo_detail">This is repository details</string>
     <string name="temp_category_name">Category Name</string>
-    <string name="temp_bio">My bio is here…</string>
     <string name="temp_email">test@gmail.com</string>
-    <string name="temp_fullname">username/reponame</string>
-    <string name="temp_notification_title">Here is the detail of notification</string>
-    <string name="temp_days">8d</string>
-    <string name="temp_programming_language">Java</string>
-    <string name="temp_find_inspiration">Find project inspiration through the \"Trending Now\" feature</string>
-    <string name="temp_date">12-12-2021</string>
-    <string name="empty_text">NO DATA</string>
-
-    <string name="my_work">My Work</string>
-    <string name="issues">Issues</string>
-    <string name="discussions">Discussions</string>
-    <string name="contribution">Contribution</string>
-    <string name="favorites">Favorites</string>
-    <string name="favorite_detail">Add favorite repositories for quick access at any time, without having to search</string>
-    <string name="add_repositories">Add Repositories</string>
-    <string name="chartDetail">Your profile contributions graph is a record of contributions you\'ve made to GitHub repositories.</string>
 
     <string name="failed_text">"Failed to get data from server. Please try again."</string>
-
-    <string name="patricia_fiona">Patricia Fiona</string>
-    <string name="android_developer">Android Developer</string>
-    <string name="myEmail">patriciafiona3@gmail.com</string>
 
     <string name="not_following_anyone">User doesn\'t following anyone</string>
     <string name="dont_have_followers">User doesn\'t have any followers</string>
 
-    <string name="off">OFF</string>
-    <string name="on">ON</string>
-
-    <string name="daily_reminder">Daily Reminder</string>
-    <string name="daily_reminder_message">Hi, have you checked the Github User application today?
-        Let\'s check Github User right now to see the latest information.</string>
-    <string name="success_set_reminder">Repeating alarm set up</string>
-    <string name="success_remove_reminder">Repeating alarm is removed</string>
-
     <!-- Image Description -->
-    <string name="about_background_img">About Background Img</string>
-    <string name="white_wave_img">White Wave Img</string>
-    <string name="fb_button">FB Button</string>
-    <string name="ig_button">IG Button</string>
-    <string name="linkedin_button">LinkedIn Button</string>
-    <string name="github_button">Github Button</string>
     <string name="white_dot">White Dot</string>
     <string name="grey_star_icon">Grey Star Icon</string>
     <string name="grey_location_icon">Grey Location Icon</string>
@@ -104,23 +49,7 @@
     <string name="grey_link_icon">Grey Link Icon</string>
     <string name="grey_user_outline_icon">Grey User Outline Icon</string>
     <string name="no_data_img">No Data Img</string>
-    <string name="trending_banner_img">Trending Banner Img</string>
     <string name="github_logo_img">Github Logo Img</string>
-    <string name="white_issue_icon">White Issue Icon</string>
-    <string name="white_discus_icon">White Discuss Icon</string>
-    <string name="white_repo_icon">White Repo Icon</string>
-    <string name="white_company_icon">White Company Icon</string>
-    <string name="grey_dot">Grey Dot</string>
-    <string name="white_star_icon">White Star Icon</string>
-    <string name="grey_notification_icon">Grey Notification Icon</string>
-    <string name="grey_reminder_icon">Grey Reminder Icon</string>
     <string name="grey_language_icon">Grey Language Icon</string>
-    <string name="grey_about_icon">Grey About Icon</string>
     <string name="yellow_star_icon">Yellow Star Icon</string>
-    <string name="user_img">User Img</string>
-    <string name="widget_image">Widget Image</string>
-    <string name="title_activity_main">MainActivity</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
 </resources>

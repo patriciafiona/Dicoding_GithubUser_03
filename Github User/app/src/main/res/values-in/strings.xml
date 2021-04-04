@@ -5,7 +5,6 @@
 
     <string name="about">Tentang Kami</string>
     <string name="language">Bahasa</string>
-    <string name="account">Akun</string>
     <string name="popular">Populer</string>
     <string name="repositories">Repositori</string>
     <string name="organizations">Organisasi</string>
@@ -20,9 +19,6 @@
 
     <string name="app_version">Github User untuk perangkat mobile v1.0.00</string>
 
-    <string name="search">Cari</string>
-    <string name="search_hint">Cari dengan username</string>
-
     <string name="bottom_nav_txt_01">Beranda</string>
     <string name="bottom_nav_txt_02">Jelajah</string>
     <string name="bottom_nav_txt_03">Profil</string>
@@ -34,13 +30,11 @@
     <string name="unfollow">Tidak Ikuti</string>
 
     <string name="favorite">Disukai</string>
-    <string name="unfavorite">Tidak Disukai</string>
     <string name="success_add_fav">Berhasil Menambahkan Pengguna ke Favorit</string>
     <string name="failed_add_fav">Gagal Menambahkan Pengguna ke Favorit</string>
     <string name="success_remove_fav">Berhasil Mengeluarkan Pengguna dari Favorit</string>
     <string name="failed_remove_fav">Gagal Mengeluarkan Pengguna dari Favorit</string>
     <string name="your_favorite_user">Daftar Favorit Pengguna</string>
-    <string name="added_at">Ditambahkan pada:</string>
 
     <!-- Temporary text -->
     <string name="temp_name">Nama disini…</string>
@@ -59,7 +53,6 @@
     <string name="temp_days">8d</string>
     <string name="temp_programming_language">Java</string>
     <string name="temp_find_inspiration">Temukan inspirasi proyek melalui fitur \"Trending Now"\</string>
-    <string name="temp_date">12-12-2021</string>
     <string name="empty_text">TIDAK ADA DATA</string>
 
     <string name="my_work">Pekerjaan Saya</string>
@@ -69,7 +62,6 @@
     <string name="favorites">Favorit</string>
     <string name="favorite_detail">Tambahkan repositori favorit untuk akses cepat kapan saja, tanpa harus mencari</string>
     <string name="add_repositories">Tambah Repositori</string>
-    <string name="chartDetail">Grafik kontribusi profil Anda adalah catatan kontribusi yang Anda buat ke repositori GitHub.</string>
 
     <string name="failed_text">Gagal mengambil data dari server. Silahkan coba kembali.</string>
 

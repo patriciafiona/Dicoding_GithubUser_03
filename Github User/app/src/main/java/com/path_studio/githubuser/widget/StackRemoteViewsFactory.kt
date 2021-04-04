@@ -3,17 +3,12 @@ package com.path_studio.githubuser.widget
 import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.util.Log
 import android.widget.RemoteViews
 import android.widget.RemoteViewsService
 import androidx.core.os.bundleOf
 import com.path_studio.githubuser.R
 import com.path_studio.githubuser.Utils
-import java.io.IOException
-import java.io.InputStream
-import java.net.HttpURLConnection
-import java.net.URL
 
 internal class StackRemoteViewsFactory(private val mContext: Context, private val listAvatar: ArrayList<String>) : RemoteViewsService.RemoteViewsFactory {
 

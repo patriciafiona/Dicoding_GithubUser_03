@@ -1,9 +1,7 @@
 package com.path_studio.githubuser.helper
 
 import android.database.Cursor
-import android.provider.ContactsContract
 import com.path_studio.githubuser.database.DatabaseContract
-import com.path_studio.githubuser.entities.User
 import com.path_studio.githubuser.entities.UserFav
 
 object MappingHelper {
