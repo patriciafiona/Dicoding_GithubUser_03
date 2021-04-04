@@ -5,20 +5,20 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class User (
-    var login: String?, //username
-    var id: Int,
-    var avatar_url: String?,
-    var name: String?,
-    var company: String?,
-    var blog: String?, //link
-    var location: String?,
-    var email: String?,
-    var bio: String?,
-    var public_repos: Int, //only get total public repositories
-    var owned_private_repos: Int,
-    var followers: Int,
-    var following: Int,
-    var created_at: String?,
-    var updated_at: String?,
-    var type: String?,
+    var login: String? = null, //username
+    var id: Int = 0,
+    var avatar_url: String? = null,
+    var name: String? = null,
+    var company: String? = null,
+    var blog: String? = null, //link
+    var location: String? = null,
+    var email: String? = null,
+    var bio: String? = null,
+    var public_repos: Int = 0, //only get total public repositories
+    var owned_private_repos: Int = 0,
+    var followers: Int = 0,
+    var following: Int = 0,
+    var created_at: String? = null,
+    var updated_at: String? = null,
+    var type: String? = null,
 ): Parcelable

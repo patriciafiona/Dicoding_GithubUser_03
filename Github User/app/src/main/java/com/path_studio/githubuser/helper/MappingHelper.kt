@@ -1,7 +1,9 @@
 package com.path_studio.githubuser.helper
 
 import android.database.Cursor
+import android.provider.ContactsContract
 import com.path_studio.githubuser.database.DatabaseContract
+import com.path_studio.githubuser.entities.User
 import com.path_studio.githubuser.entities.UserFav
 
 object MappingHelper {
@@ -16,5 +18,17 @@ object MappingHelper {
             }
         }
         return userList
+    }
+
+    fun mapCursorToObject(notesCursor: Cursor?): UserFav {
+        var user = UserFav()
+        notesCursor?.apply {
+            moveToFirst()
+            val id = getInt(getColumnIndexOrThrow(DatabaseContract.UserColumns._ID))
+            val login = getString(getColumnIndexOrThrow(DatabaseContract.UserColumns.LOGIN))
+            val date = getString(getColumnIndexOrThrow(DatabaseContract.UserColumns.DATE))
+            user = UserFav(id, login, date)
+        }
+        return user
     }
 }

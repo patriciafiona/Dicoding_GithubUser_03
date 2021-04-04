@@ -1,6 +1,9 @@
 package com.path_studio.githubuser.fragments
 
+import android.database.ContentObserver
 import android.os.Bundle
+import android.os.Handler
+import android.os.HandlerThread
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -11,7 +14,7 @@ import com.path_studio.githubuser.CategoriesComparator
 import com.path_studio.githubuser.Utils
 import com.path_studio.githubuser.activities.MainActivity
 import com.path_studio.githubuser.adapters.UserFavAdapter
-import com.path_studio.githubuser.database.UserHelper
+import com.path_studio.githubuser.database.DatabaseContract.UserColumns.Companion.CONTENT_URI
 import com.path_studio.githubuser.databinding.FragmentFavoriteUserBinding
 import com.path_studio.githubuser.entities.User
 import com.path_studio.githubuser.entities.UserFav
@@ -46,6 +49,7 @@ class FavoriteUserFragment : Fragment() {
         binding.rvFavUser.layoutManager = LinearLayoutManager(activity)
         binding.rvFavUser.setHasFixedSize(true)
         adapter = UserFavAdapter(activity as MainActivity)
+
         return view
     }
 
@@ -160,16 +164,12 @@ class FavoriteUserFragment : Fragment() {
     }
 
     private suspend fun getCurrentUserFav(): ArrayList<UserFav> = coroutineScope{
-        val userHelper = UserHelper.getInstance((activity as MainActivity).applicationContext)
-        userHelper.open()
-
         val deferredUsers = async(Dispatchers.IO) {
-            val cursor = userHelper.queryAll()
+            val cursor = (activity as MainActivity).contentResolver.query(CONTENT_URI, null, null, null, null)
             MappingHelper.mapCursorToArrayList(cursor)
         }
 
         val users = deferredUsers.await()
-        userHelper.close()
 
         users
     }

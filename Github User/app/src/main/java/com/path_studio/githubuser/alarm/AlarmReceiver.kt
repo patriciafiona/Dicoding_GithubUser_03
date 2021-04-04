@@ -1,6 +1,9 @@
 package com.path_studio.githubuser.alarm
 
-import android.app.*
+import android.app.AlarmManager
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.app.PendingIntent
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
@@ -93,7 +96,8 @@ class AlarmReceiver : BroadcastReceiver() {
         notificationManagerCompat.notify(notifId, notification)
     }
 
-    fun setRepeatingAlarm(context: Context, time: String, message: String) {
+    fun setRepeatingAlarm(context: Context, message: String) {
+        val time = "09:00"
         if (isDateInvalid(time)) return
 
         val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager

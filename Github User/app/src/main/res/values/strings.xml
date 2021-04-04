@@ -85,7 +85,6 @@
     <string name="daily_reminder">Daily Reminder</string>
     <string name="daily_reminder_message">Hi, have you checked the Github User application today?
         Let\'s check Github User right now to see the latest information.</string>
-    <string name="daily_reminder_time">09:00</string>
     <string name="success_set_reminder">Repeating alarm set up</string>
     <string name="success_remove_reminder">Repeating alarm is removed</string>
 

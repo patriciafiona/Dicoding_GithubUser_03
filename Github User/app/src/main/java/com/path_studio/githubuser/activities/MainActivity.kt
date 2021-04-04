@@ -1,8 +1,6 @@
 package com.path_studio.githubuser.activities
 
-import android.os.Build
 import android.os.Bundle
-import android.os.StrictMode
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log

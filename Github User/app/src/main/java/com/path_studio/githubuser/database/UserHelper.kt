@@ -5,6 +5,7 @@ import android.content.Context
 import android.database.Cursor
 import android.database.SQLException
 import android.database.sqlite.SQLiteDatabase
+import android.util.Log
 import com.path_studio.githubuser.database.DatabaseContract.UserColumns.Companion.LOGIN
 import com.path_studio.githubuser.database.DatabaseContract.UserColumns.Companion.TABLE_NAME
 import com.path_studio.githubuser.database.DatabaseContract.UserColumns.Companion._ID
@@ -53,6 +54,10 @@ class UserHelper(context: Context)  {
 
     fun insert(values: ContentValues?): Long {
         return database.insert(DATABASE_TABLE, null, values)
+    }
+
+    fun update(id: String, values: ContentValues?): Int {
+        return database.update(DATABASE_TABLE, values, "$_ID = ?", arrayOf(id))
     }
 
     fun deleteByLogin(login: String): Int {

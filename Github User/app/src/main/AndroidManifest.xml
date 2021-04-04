@@ -3,6 +3,8 @@
     package="com.path_studio.githubuser">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <permission android:name="com.path_studio.githubuser.READ_DATABASE" android:protectionLevel="normal"/>
+    <permission android:name="com.path_studio.githubuser.WRITE_DATABASE" android:protectionLevel="normal"/>
 
     <application
         android:allowBackup="true"
@@ -11,6 +13,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.GithubUser">
+        <provider
+            android:name=".UserProvider"
+            android:authorities="com.path_studio.githubuser"
+            android:enabled="true"
+            android:exported="true"
+            android:readPermission="com.path_studio.githubuser.READ_DATABASE"
+            android:writePermission="com.path_studio.githubuser.WRITE_DATABASE"/>
+
         <receiver android:name=".widget.FavoriteUserWidget">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />

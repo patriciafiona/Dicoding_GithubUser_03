@@ -76,10 +76,8 @@ class SettingsFragment : Fragment() {
                 checkReminderStatus()
             }else{
                 //turn on alarm
-                val repeatTime = (activity as MainActivity).getString(R.string.daily_reminder_time)
                 val repeatMessage = (activity as MainActivity).getString(R.string.daily_reminder_message)
-                alarmReceiver.setRepeatingAlarm((activity as MainActivity),
-                        repeatTime, repeatMessage)
+                alarmReceiver.setRepeatingAlarm((activity as MainActivity), repeatMessage)
 
                 checkReminderStatus()
             }

@@ -4,6 +4,7 @@ import android.appwidget.AppWidgetManager
 import android.content.*
 import android.content.res.ColorStateList
 import android.graphics.drawable.AnimationDrawable
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -22,20 +23,17 @@ import com.path_studio.githubuser.Utils
 import com.path_studio.githubuser.adapters.ListPopularRepoAdapter
 import com.path_studio.githubuser.adapters.UserFavAdapter
 import com.path_studio.githubuser.database.DatabaseContract
+import com.path_studio.githubuser.database.DatabaseContract.UserColumns.Companion.CONTENT_URI
 import com.path_studio.githubuser.database.DatabaseContract.UserColumns.Companion.DATE
-import com.path_studio.githubuser.database.UserHelper
 import com.path_studio.githubuser.databinding.ActivityDetailUserBinding
 import com.path_studio.githubuser.entities.Repository
 import com.path_studio.githubuser.entities.User
+import com.path_studio.githubuser.entities.UserFav
 import com.path_studio.githubuser.fragments.ProfileFragment
 import com.path_studio.githubuser.helper.MappingHelper
 import com.path_studio.githubuser.models.*
 import com.path_studio.githubuser.widget.FavoriteUserWidget
-import com.path_studio.githubuser.widget.FavoriteUserWidget.Companion.APPWIDGETID
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.async
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -52,9 +50,10 @@ class DetailUserActivity : AppCompatActivity() {
     private lateinit var skeleton: Skeleton
 
     private lateinit var adapter: UserFavAdapter
-    private lateinit var userHelper: UserHelper
 
     private var statusFav:Boolean = false
+
+    private lateinit var uriWithLogin: Uri
 
     companion object {
         const val EXTRA_USER = "extra_user"
@@ -100,8 +99,6 @@ class DetailUserActivity : AppCompatActivity() {
     private fun setFloatingBtnListener(login: String){
         val favBtn: FloatingActionButton = binding.favBtn
 
-        userHelper = UserHelper.getInstance(applicationContext)
-
         favBtn.setOnClickListener {
             if(checkDatabase(login)){
                 //already add to fav
@@ -126,33 +123,29 @@ class DetailUserActivity : AppCompatActivity() {
     private fun checkDatabase(login: String): Boolean{
         setFloatBtnRead(false)
 
-        GlobalScope.launch(Dispatchers.Main) {
-            userHelper = UserHelper.getInstance(applicationContext)
-            userHelper.open()
+        var users = ArrayList<UserFav>()
+        uriWithLogin = Uri.parse("$CONTENT_URI/$login")
+        val cursor = contentResolver.query(uriWithLogin, null, null, null, null)
 
-            val deferredUsers = async(Dispatchers.IO) {
-                val cursor = userHelper.queryByLogin(login)
-                MappingHelper.mapCursorToArrayList(cursor)
-            }
-            val users = deferredUsers.await()
+        if (cursor != null) {
+            users = MappingHelper.mapCursorToArrayList(cursor)
+            cursor.close()
+        }
 
-            statusFav = users.size > 0
+        statusFav = users.size > 0
 
-            if(statusFav){
-                binding.favBtn.backgroundTintList = ColorStateList.valueOf(
-                        this@DetailUserActivity.getColor(
-                                R.color.red
-                        )
-                )
-            }else{
-                binding.favBtn.backgroundTintList = ColorStateList.valueOf(
-                        this@DetailUserActivity.getColor(
-                                R.color.grey_300
-                        )
-                )
-            }
-
-            userHelper.close()
+        if(statusFav){
+            binding.favBtn.backgroundTintList = ColorStateList.valueOf(
+                    this@DetailUserActivity.getColor(
+                            R.color.red
+                    )
+            )
+        }else{
+            binding.favBtn.backgroundTintList = ColorStateList.valueOf(
+                    this@DetailUserActivity.getColor(
+                            R.color.grey_300
+                    )
+            )
         }
 
         setFloatBtnRead(true)
@@ -161,14 +154,13 @@ class DetailUserActivity : AppCompatActivity() {
     }
 
     private fun addToDatabase(login: String){
-        userHelper.open()
-
         val values = ContentValues()
         values.put(DatabaseContract.UserColumns.LOGIN, login)
         values.put(DATE, Utils.getCurrentDate())
-        val result = userHelper.insert(values)
 
-        if (result > 0) {
+        val result = contentResolver.insert(CONTENT_URI, values)
+
+        if (result != null) {
             binding.favBtn.backgroundTintList = ColorStateList.valueOf(this.getColor(R.color.red))
             updateWidget()
             Toast.makeText(
@@ -184,12 +176,12 @@ class DetailUserActivity : AppCompatActivity() {
                     Toast.LENGTH_SHORT
             ).show()
         }
-        userHelper.close()
     }
 
     private fun deleteToDatabase(login: String){
-        userHelper.open()
-        val result = userHelper.deleteByLogin(login).toLong()
+        uriWithLogin = Uri.parse(CONTENT_URI.toString() + "/" + login)
+        val result = contentResolver.delete(uriWithLogin, null, null)
+
         if (result > 0) {
             binding.favBtn.backgroundTintList = ColorStateList.valueOf(this.getColor(R.color.grey_300))
             updateWidget()
@@ -206,7 +198,6 @@ class DetailUserActivity : AppCompatActivity() {
                     Toast.LENGTH_SHORT
             ).show()
         }
-        userHelper.close()
     }
 
     private fun setFloatBtnRead(status: Boolean){
