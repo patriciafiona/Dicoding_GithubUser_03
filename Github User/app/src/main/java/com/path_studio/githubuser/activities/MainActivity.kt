@@ -1,6 +1,8 @@
 package com.path_studio.githubuser.activities
 
+import android.os.Build
 import android.os.Bundle
+import android.os.StrictMode
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
@@ -24,6 +26,7 @@ import com.path_studio.githubuser.models.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -96,7 +99,7 @@ class MainActivity : AppCompatActivity() {
             override fun afterTextChanged(s: Editable) {}
         })
         searchBar.setSuggestionsClickListener(object :
-            SuggestionsAdapter.OnItemViewClickListener {
+                SuggestionsAdapter.OnItemViewClickListener {
             override fun OnItemClickListener(position: Int, v: View) {}
             override fun OnItemDeleteListener(position: Int, v: View) {}
         })
@@ -106,8 +109,8 @@ class MainActivity : AppCompatActivity() {
     private fun getSearchUserResult(name: String): ArrayList<User>{
         gitHubServiceitHubService.getSearchByUsername(name, ACCESS_TOKEN).enqueue(object : Callback<Search> {
             override fun onResponse(
-                call: Call<Search>,
-                response: Response<Search>
+                    call: Call<Search>,
+                    response: Response<Search>
             ) {
                 if (response.isSuccessful) {
                     searchResult = response.body() as Search
@@ -132,11 +135,11 @@ class MainActivity : AppCompatActivity() {
     private fun setBottomNav(){
         val navView = findViewById<BottomNavigationView>(R.id.nav_view)
         val appBarConfiguration = AppBarConfiguration.Builder(
-            R.id.navigation_home,
-            R.id.navigation_explore,
-            R.id.navigation_favorite,
-            R.id.navigation_profile,
-            R.id.navigation_settings
+                R.id.navigation_home,
+                R.id.navigation_explore,
+                R.id.navigation_favorite,
+                R.id.navigation_profile,
+                R.id.navigation_settings
         )
             .build()
         val navController = Navigation.findNavController(this, R.id.nav_host_fragment)

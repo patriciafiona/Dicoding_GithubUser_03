@@ -4,44 +4,40 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.util.Log
 import android.widget.RemoteViews
 import android.widget.RemoteViewsService
 import androidx.core.os.bundleOf
 import com.path_studio.githubuser.R
+import com.path_studio.githubuser.Utils
 import java.io.IOException
 import java.io.InputStream
 import java.net.HttpURLConnection
 import java.net.URL
 
-internal class StackRemoteViewsFactory(private val mContext: Context, private val listAvatarURL:ArrayList<String>) : RemoteViewsService.RemoteViewsFactory {
+internal class StackRemoteViewsFactory(private val mContext: Context, private val listAvatar: ArrayList<String>) : RemoteViewsService.RemoteViewsFactory {
 
     private val mWidgetItems = ArrayList<Bitmap>()
+    private var mListAvatar = ArrayList<String>()
 
-    override fun onCreate() {}
+    fun setListAvatar(listAvatar: ArrayList<String>){
+        Log.e("Manual Add", listAvatar.toString())
+        this.mListAvatar = listAvatar
+    }
+
+    override fun onCreate() {
+        setListAvatar(listAvatar)
+    }
 
     override fun onDataSetChanged() {
-        for (avatarURL in listAvatarURL){
-            mWidgetItems.add(getBitmapFromURL(avatarURL))
+        mWidgetItems.clear()
+        for (avatarURL in mListAvatar){
+            Log.e("avatar URL", avatarURL)
+            mWidgetItems.add(Utils.getBitmapFromURL(mContext, avatarURL))
         }
     }
 
-    private fun getBitmapFromURL(src: String?): Bitmap {
-        return try {
-            val url = URL(src)
-            val connection: HttpURLConnection = url.openConnection() as HttpURLConnection
-            connection.doInput = true
-            connection.connect()
-            val input: InputStream = connection.getInputStream()
-            BitmapFactory.decodeStream(input)
-        } catch (e: IOException) {
-            // Log exception
-            BitmapFactory.decodeResource(mContext.resources, R.drawable.no_data)
-        }
-    }
-
-    override fun onDestroy() {
-
-    }
+    override fun onDestroy() {}
 
     override fun getCount(): Int = mWidgetItems.size
 

@@ -21,7 +21,7 @@
                 android:resource="@xml/favorite_user_widget_info" />
         </receiver>
         <receiver
-            android:name=".AlarmReceiver"
+            android:name=".alarm.AlarmReceiver"
             android:enabled="true"
             android:exported="true" />
 

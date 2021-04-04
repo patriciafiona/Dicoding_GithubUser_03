@@ -2,8 +2,14 @@ package com.path_studio.githubuser
 
 import android.app.AlertDialog
 import android.content.Context
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.os.Build
 import androidx.annotation.RequiresApi
+import java.io.IOException
+import java.io.InputStream
+import java.net.HttpURLConnection
+import java.net.URL
 import java.text.SimpleDateFormat
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
@@ -121,6 +127,20 @@ object Utils {
         val date = Date()
 
         return dateFormat.format(date)
+    }
+
+    fun getBitmapFromURL(context: Context, src: String?): Bitmap {
+        return try {
+            val url = URL(src)
+            val connection: HttpURLConnection = url.openConnection() as HttpURLConnection
+            connection.doInput = true
+            connection.connect()
+            val input: InputStream = connection.inputStream
+            BitmapFactory.decodeStream(input)
+        } catch (e: IOException) {
+            // Log exception
+            BitmapFactory.decodeResource(context.resources, R.drawable.no_data)
+        }
     }
 
 }

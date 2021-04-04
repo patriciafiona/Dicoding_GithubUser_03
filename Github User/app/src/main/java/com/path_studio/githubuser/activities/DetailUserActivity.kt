@@ -1,7 +1,7 @@
 package com.path_studio.githubuser.activities
 
-import android.content.ContentValues
-import android.content.Intent
+import android.appwidget.AppWidgetManager
+import android.content.*
 import android.content.res.ColorStateList
 import android.graphics.drawable.AnimationDrawable
 import android.os.Bundle
@@ -31,6 +31,7 @@ import com.path_studio.githubuser.fragments.ProfileFragment
 import com.path_studio.githubuser.helper.MappingHelper
 import com.path_studio.githubuser.models.*
 import com.path_studio.githubuser.widget.FavoriteUserWidget
+import com.path_studio.githubuser.widget.FavoriteUserWidget.Companion.APPWIDGETID
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
@@ -73,7 +74,7 @@ class DetailUserActivity : AppCompatActivity() {
         //init
         showLoading(true)
         mainViewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(
-            MainViewModel::class.java
+                MainViewModel::class.java
         )
 
         //set background animated
@@ -109,7 +110,17 @@ class DetailUserActivity : AppCompatActivity() {
                 //not yet add to fav
                 addToDatabase(login)
             }
+
         }
+    }
+
+    private fun updateWidget(){
+        //update widget
+        val intent = Intent(this, FavoriteUserWidget::class.java)
+        intent.action = AppWidgetManager.ACTION_APPWIDGET_UPDATE
+        val ids: IntArray = AppWidgetManager.getInstance(application).getAppWidgetIds(ComponentName(this, FavoriteUserWidget::class.java))
+        intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, ids)
+        sendBroadcast(intent)
     }
 
     private fun checkDatabase(login: String): Boolean{
@@ -129,15 +140,15 @@ class DetailUserActivity : AppCompatActivity() {
 
             if(statusFav){
                 binding.favBtn.backgroundTintList = ColorStateList.valueOf(
-                    this@DetailUserActivity.getColor(
-                        R.color.red
-                    )
+                        this@DetailUserActivity.getColor(
+                                R.color.red
+                        )
                 )
             }else{
                 binding.favBtn.backgroundTintList = ColorStateList.valueOf(
-                    this@DetailUserActivity.getColor(
-                        R.color.grey_300
-                    )
+                        this@DetailUserActivity.getColor(
+                                R.color.grey_300
+                        )
                 )
             }
 
@@ -159,17 +170,18 @@ class DetailUserActivity : AppCompatActivity() {
 
         if (result > 0) {
             binding.favBtn.backgroundTintList = ColorStateList.valueOf(this.getColor(R.color.red))
+            updateWidget()
             Toast.makeText(
-                this@DetailUserActivity,
-                this.getText(R.string.success_add_fav),
-                Toast.LENGTH_SHORT
+                    this@DetailUserActivity,
+                    this.getText(R.string.success_add_fav),
+                    Toast.LENGTH_SHORT
             ).show()
         } else {
             binding.favBtn.backgroundTintList = ColorStateList.valueOf(this.getColor(R.color.grey_300))
             Toast.makeText(
-                this@DetailUserActivity,
-                this.getText(R.string.failed_add_fav),
-                Toast.LENGTH_SHORT
+                    this@DetailUserActivity,
+                    this.getText(R.string.failed_add_fav),
+                    Toast.LENGTH_SHORT
             ).show()
         }
         userHelper.close()
@@ -180,17 +192,18 @@ class DetailUserActivity : AppCompatActivity() {
         val result = userHelper.deleteByLogin(login).toLong()
         if (result > 0) {
             binding.favBtn.backgroundTintList = ColorStateList.valueOf(this.getColor(R.color.grey_300))
+            updateWidget()
             Toast.makeText(
-                this@DetailUserActivity,
-                this.getText(R.string.success_remove_fav),
-                Toast.LENGTH_SHORT
+                    this@DetailUserActivity,
+                    this.getText(R.string.success_remove_fav),
+                    Toast.LENGTH_SHORT
             ).show()
         }else{
             binding.favBtn.backgroundTintList = ColorStateList.valueOf(this.getColor(R.color.red))
             Toast.makeText(
-                this@DetailUserActivity,
-                this.getText(R.string.failed_remove_fav),
-                Toast.LENGTH_SHORT
+                    this@DetailUserActivity,
+                    this.getText(R.string.failed_remove_fav),
+                    Toast.LENGTH_SHORT
             ).show()
         }
         userHelper.close()
@@ -238,8 +251,8 @@ class DetailUserActivity : AppCompatActivity() {
 
     private fun getAndCheckMyFollowing(){
         CreateAPI.create().getUserFollowing(
-            DetailFollowActivity.USERNAME,
-            ProfileFragment.ACCESS_TOKEN
+                DetailFollowActivity.USERNAME,
+                ProfileFragment.ACCESS_TOKEN
         ).enqueue(object : Callback<List<User>> {
             override fun onResponse(call: Call<List<User>>, response: Response<List<User>>) {
                 if (response.isSuccessful) {

@@ -1,4 +1,4 @@
-package com.path_studio.githubuser
+package com.path_studio.githubuser.alarm
 
 import android.app.*
 import android.content.BroadcastReceiver
@@ -10,6 +10,7 @@ import android.os.Build
 import android.widget.Toast
 import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
+import com.path_studio.githubuser.R
 import com.path_studio.githubuser.activities.SplashActivity
 import java.text.ParseException
 import java.text.SimpleDateFormat
@@ -43,7 +44,7 @@ class AlarmReceiver : BroadcastReceiver() {
 
         val icon = BitmapFactory.decodeResource(
                 context.resources,
-                R.drawable.github_icon
+            R.drawable.github_icon
         )
 
         val builder = NotificationCompat.Builder(context, CHANNEL_ID)
