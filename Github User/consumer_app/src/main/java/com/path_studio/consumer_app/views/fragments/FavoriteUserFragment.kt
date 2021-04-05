@@ -1,4 +1,4 @@
-package com.path_studio.githubuser.fragments
+package com.path_studio.consumer_app.views.fragments
 
 import android.os.Bundle
 import android.util.Log
@@ -7,14 +7,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.path_studio.githubuser.CategoriesComparator
-import com.path_studio.githubuser.Utils
-import com.path_studio.githubuser.activities.MainActivity
-import com.path_studio.githubuser.adapters.UserFavAdapter
-import com.path_studio.githubuser.database.DatabaseContract.UserColumns.Companion.CONTENT_URI
-import com.path_studio.githubuser.databinding.FragmentFavoriteUserBinding
-import com.path_studio.githubuser.entities.User
-import com.path_studio.githubuser.entities.UserFav
+import com.path_studio.consumer_app.BuildConfig
+import com.path_studio.consumer_app.CategoriesComparator
+import com.path_studio.consumer_app.Utils
+import com.path_studio.consumer_app.adapters.UserFavAdapter
+import com.path_studio.consumer_app.databinding.FragmentFavoriteUserBinding
+import com.path_studio.consumer_app.entities.User
+import com.path_studio.consumer_app.entities.UserFav
+import com.path_studio.consumer_app.views.activities.MainActivity
+import com.path_studio.githubuser.database.DatabaseContract
 import com.path_studio.githubuser.helper.MappingHelper
 import com.path_studio.githubuser.models.CreateAPI
 import kotlinx.coroutines.Dispatchers
@@ -27,6 +28,7 @@ import retrofit2.Response
 import java.util.*
 import kotlin.collections.ArrayList
 
+
 class FavoriteUserFragment : Fragment() {
 
     private var _binding: FragmentFavoriteUserBinding? = null
@@ -37,6 +39,8 @@ class FavoriteUserFragment : Fragment() {
     companion object {
         private const val EXTRA_USER_DETAIL = "EXTRA_USER_DETAIL"
         private const val EXTRA_USER_FAV = "EXTRA_USER_FAV"
+        const val ACCESS_TOKEN = "token " + BuildConfig.GITHUB_API_KEY
+        const val MY_USERNAME = "patriciafiona"
     }
 
     override fun onCreateView(
@@ -51,12 +55,6 @@ class FavoriteUserFragment : Fragment() {
         adapter = UserFavAdapter(activity as MainActivity)
 
         return view
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        //Show Search Bar
-        (activity as MainActivity).setSearchBarVisibility(1)
-        (activity as MainActivity).clearSearchBar()
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -133,7 +131,7 @@ class FavoriteUserFragment : Fragment() {
                 for(u in users){
                     CreateAPI.create().getUserDetail(
                         u.login,
-                        ProfileFragment.ACCESS_TOKEN
+                        ACCESS_TOKEN
                     ).enqueue(object : Callback<User> {
                         override fun onResponse(call: Call<User>, response: Response<User>) {
                             if (response.isSuccessful) {
@@ -176,10 +174,12 @@ class FavoriteUserFragment : Fragment() {
 
     private suspend fun getCurrentUserFav(): ArrayList<UserFav> = coroutineScope{
         val deferredUsers = async(Dispatchers.IO) {
-            val cursor = (activity as MainActivity).contentResolver.query(CONTENT_URI, null, null, null, null)
+            val cursor = (activity as MainActivity).contentResolver.query(DatabaseContract.UserColumns.CONTENT_URI, null, null, null, null)
             MappingHelper.mapCursorToArrayList(cursor)
         }
+
         val users = deferredUsers.await()
+
         users
     }
 

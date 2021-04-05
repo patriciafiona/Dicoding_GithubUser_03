@@ -14,7 +14,7 @@ import android.widget.Toast
 import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
 import com.path_studio.githubuser.R
-import com.path_studio.githubuser.activities.SplashActivity
+import com.path_studio.githubuser.view.activities.SplashActivity
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*

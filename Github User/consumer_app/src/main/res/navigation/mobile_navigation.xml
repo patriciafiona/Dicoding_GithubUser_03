@@ -6,12 +6,12 @@
     app:startDestination="@id/navigation_favorite">
     <fragment
         android:id="@+id/navigation_favorite"
-        android:name="com.path_studio.consumer_app.fragments.FavoriteUserFragment"
+        android:name="com.path_studio.consumer_app.views.fragments.FavoriteUserFragment"
         android:label="fragment_user_fav"
         tools:layout="@layout/fragment_favorite_user" />
     <fragment
         android:id="@+id/navigation_settings"
-        android:name="com.path_studio.consumer_app.fragments.SettingsFragment"
+        android:name="com.path_studio.consumer_app.views.fragments.SettingsFragment"
         android:label="fragment_settings"
         tools:layout="@layout/fragment_settings" />
 </navigation>

@@ -39,10 +39,10 @@
             android:name=".widget.StackWidgetService"
             android:permission="android.permission.BIND_REMOTEVIEWS" />
 
-        <activity android:name=".activities.DetailFollowActivity" />
-        <activity android:name=".activities.DetailUserActivity" />
+        <activity android:name="com.path_studio.githubuser.view.activities.DetailFollowActivity" />
+        <activity android:name="com.path_studio.githubuser.view.activities.DetailUserActivity" />
         <activity
-            android:name=".activities.SplashActivity"
+            android:name="com.path_studio.githubuser.view.activities.SplashActivity"
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -50,9 +50,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.NotificationActivity" />
-        <activity android:name=".activities.AboutActivity" />
-        <activity android:name=".activities.MainActivity" />
+        <activity android:name="com.path_studio.githubuser.view.activities.NotificationActivity" />
+        <activity android:name="com.path_studio.githubuser.view.activities.AboutActivity" />
+        <activity android:name="com.path_studio.githubuser.view.activities.MainActivity" />
     </application>
 
 </manifest>

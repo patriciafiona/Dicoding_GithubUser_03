@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     style="@style/FragmentLayout.WithSearchBar"
-    tools:context=".fragments.HomeFragment">
+    tools:context=".view.fragments.HomeFragment">
 
     <com.faltenreich.skeletonlayout.SkeletonLayout
         android:id="@+id/skeletonLayout"

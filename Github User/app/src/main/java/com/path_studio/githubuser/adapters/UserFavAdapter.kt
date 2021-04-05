@@ -10,10 +10,10 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.path_studio.githubuser.CustomOnItemClickListener
 import com.path_studio.githubuser.R
-import com.path_studio.githubuser.activities.DetailUserActivity
 import com.path_studio.githubuser.databinding.ItemRowFavUserBinding
 import com.path_studio.githubuser.entities.User
 import com.path_studio.githubuser.entities.UserFav
+import com.path_studio.githubuser.view.activities.DetailUserActivity
 
 class UserFavAdapter(private val activity: Activity) : RecyclerView.Adapter<UserFavAdapter.UserFavViewHolder>() {
     //for on resume check process

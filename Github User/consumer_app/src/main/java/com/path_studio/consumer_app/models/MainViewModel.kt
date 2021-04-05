@@ -11,8 +11,8 @@ import com.path_studio.consumer_app.entities.Organization
 import com.path_studio.consumer_app.entities.Repository
 import com.path_studio.consumer_app.entities.SearchRepo
 import com.path_studio.consumer_app.entities.User
-import com.path_studio.consumer_app.fragments.FavoriteUserFragment.Companion.ACCESS_TOKEN
-import com.path_studio.consumer_app.fragments.FavoriteUserFragment.Companion.MY_USERNAME
+import com.path_studio.consumer_app.views.fragments.FavoriteUserFragment.Companion.ACCESS_TOKEN
+import com.path_studio.consumer_app.views.fragments.FavoriteUserFragment.Companion.MY_USERNAME
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

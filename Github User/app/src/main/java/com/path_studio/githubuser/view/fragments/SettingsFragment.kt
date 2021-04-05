@@ -1,4 +1,4 @@
-package com.path_studio.githubuser.fragments
+package com.path_studio.githubuser.view.fragments
 
 import android.content.Intent
 import android.os.Bundle
@@ -8,11 +8,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.path_studio.githubuser.R
-import com.path_studio.githubuser.activities.AboutActivity
-import com.path_studio.githubuser.activities.MainActivity
-import com.path_studio.githubuser.activities.NotificationActivity
 import com.path_studio.githubuser.alarm.AlarmReceiver
 import com.path_studio.githubuser.databinding.FragmentSettingsBinding
+import com.path_studio.githubuser.view.activities.AboutActivity
+import com.path_studio.githubuser.view.activities.MainActivity
+import com.path_studio.githubuser.view.activities.NotificationActivity
 
 class SettingsFragment : Fragment() {
 

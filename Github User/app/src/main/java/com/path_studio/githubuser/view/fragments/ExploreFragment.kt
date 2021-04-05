@@ -1,4 +1,4 @@
-package com.path_studio.githubuser.fragments
+package com.path_studio.githubuser.view.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -13,11 +13,11 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.path_studio.githubuser.R
-import com.path_studio.githubuser.activities.MainActivity
 import com.path_studio.githubuser.adapters.ListTrendingRepoAdapter
 import com.path_studio.githubuser.databinding.FragmentExploreBinding
 import com.path_studio.githubuser.entities.SearchRepo
 import com.path_studio.githubuser.models.MainViewModel
+import com.path_studio.githubuser.view.activities.MainActivity
 
 class ExploreFragment : Fragment() {
 

@@ -3,8 +3,8 @@ package com.path_studio.consumer_app.adapters
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.path_studio.consumer_app.fragments.FollowerFragment
-import com.path_studio.consumer_app.fragments.FollowingFragment
+import com.path_studio.consumer_app.views.fragments.FollowerFragment
+import com.path_studio.consumer_app.views.fragments.FollowingFragment
 
 
 class FollowTabsAdapter(activity: AppCompatActivity) : FragmentStateAdapter(activity) {

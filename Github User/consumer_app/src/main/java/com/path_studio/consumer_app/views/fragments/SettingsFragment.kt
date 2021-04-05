@@ -1,4 +1,4 @@
-package com.path_studio.consumer_app.fragments
+package com.path_studio.consumer_app.views.fragments
 
 import android.content.Intent
 import android.os.Bundle

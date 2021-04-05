@@ -5,7 +5,7 @@
     style="@style/Layout"
     android:paddingBottom="65dp"
     android:background="@color/grey_200"
-    tools:context=".fragments.ProfileFragment">
+    tools:context=".view.fragments.ProfileFragment">
 
     <com.faltenreich.skeletonlayout.SkeletonLayout
         android:id="@+id/skeletonLayout"

@@ -1,4 +1,4 @@
-package com.path_studio.githubuser.activities
+package com.path_studio.githubuser.view.activities
 
 import android.os.Bundle
 import android.view.View

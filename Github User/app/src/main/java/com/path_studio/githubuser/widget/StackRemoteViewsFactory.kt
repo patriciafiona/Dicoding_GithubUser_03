@@ -15,7 +15,7 @@ internal class StackRemoteViewsFactory(private val mContext: Context, private va
     private val mWidgetItems = ArrayList<Bitmap>()
     private var mListAvatar = ArrayList<String>()
 
-    fun setListAvatar(listAvatar: ArrayList<String>){
+    private fun setListAvatar(listAvatar: ArrayList<String>){
         Log.e("Manual Add", listAvatar.toString())
         this.mListAvatar = listAvatar
     }

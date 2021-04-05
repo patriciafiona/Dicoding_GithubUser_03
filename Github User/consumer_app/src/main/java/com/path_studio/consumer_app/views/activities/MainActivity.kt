@@ -1,4 +1,4 @@
-package com.path_studio.consumer_app.activities
+package com.path_studio.consumer_app.views.activities
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

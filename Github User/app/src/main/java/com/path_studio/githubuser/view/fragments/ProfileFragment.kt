@@ -1,4 +1,4 @@
-package com.path_studio.githubuser.fragments
+package com.path_studio.githubuser.view.fragments
 
 import android.content.Intent
 import android.os.Bundle
@@ -14,14 +14,14 @@ import com.bumptech.glide.request.RequestOptions
 import com.faltenreich.skeletonlayout.Skeleton
 import com.path_studio.githubuser.BuildConfig
 import com.path_studio.githubuser.Utils
-import com.path_studio.githubuser.activities.DetailFollowActivity
-import com.path_studio.githubuser.activities.MainActivity
 import com.path_studio.githubuser.adapters.ListPopularRepoAdapter
 import com.path_studio.githubuser.databinding.FragmentProfileBinding
 import com.path_studio.githubuser.entities.Organization
 import com.path_studio.githubuser.entities.Repository
 import com.path_studio.githubuser.entities.User
 import com.path_studio.githubuser.models.MainViewModel
+import com.path_studio.githubuser.view.activities.DetailFollowActivity
+import com.path_studio.githubuser.view.activities.MainActivity
 
 class ProfileFragment : Fragment() {
 

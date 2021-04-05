@@ -1,4 +1,4 @@
-package com.path_studio.githubuser.activities
+package com.path_studio.consumer_app.views.activities
 
 import android.os.Bundle
 import androidx.annotation.StringRes
@@ -8,10 +8,10 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
-import com.path_studio.githubuser.R
-import com.path_studio.githubuser.adapters.FollowTabsAdapter
-import com.path_studio.githubuser.databinding.ActivityDetailFollowBinding
-import com.path_studio.githubuser.entities.User
+import com.path_studio.consumer_app.R
+import com.path_studio.consumer_app.adapters.FollowTabsAdapter
+import com.path_studio.consumer_app.databinding.ActivityDetailFollowBinding
+import com.path_studio.consumer_app.entities.User
 
 class DetailFollowActivity : AppCompatActivity() {
 

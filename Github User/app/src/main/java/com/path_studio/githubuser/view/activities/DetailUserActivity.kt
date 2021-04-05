@@ -1,7 +1,6 @@
-package com.path_studio.consumer_app.activities
+package com.path_studio.githubuser.view.activities
 
-import android.content.ContentValues
-import android.content.Intent
+import android.content.*
 import android.content.res.ColorStateList
 import android.graphics.drawable.AnimationDrawable
 import android.net.Uri
@@ -18,25 +17,25 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.faltenreich.skeletonlayout.Skeleton
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.path_studio.consumer_app.R
-import com.path_studio.consumer_app.Utils
-import com.path_studio.consumer_app.adapters.ListPopularRepoAdapter
-import com.path_studio.consumer_app.adapters.UserFavAdapter
-import com.path_studio.consumer_app.databinding.ActivityDetailUserBinding
-import com.path_studio.consumer_app.entities.Repository
-import com.path_studio.consumer_app.entities.User
-import com.path_studio.consumer_app.entities.UserFav
-import com.path_studio.consumer_app.fragments.FavoriteUserFragment.Companion.ACCESS_TOKEN
-import com.path_studio.consumer_app.fragments.FavoriteUserFragment.Companion.MY_USERNAME
+import com.path_studio.githubuser.R
+import com.path_studio.githubuser.Utils
+import com.path_studio.githubuser.adapters.ListPopularRepoAdapter
+import com.path_studio.githubuser.adapters.UserFavAdapter
 import com.path_studio.githubuser.database.DatabaseContract
+import com.path_studio.githubuser.database.DatabaseContract.UserColumns.Companion.CONTENT_URI
+import com.path_studio.githubuser.database.DatabaseContract.UserColumns.Companion.DATE
+import com.path_studio.githubuser.databinding.ActivityDetailUserBinding
+import com.path_studio.githubuser.entities.Repository
+import com.path_studio.githubuser.entities.User
+import com.path_studio.githubuser.entities.UserFav
 import com.path_studio.githubuser.helper.MappingHelper
-import com.path_studio.githubuser.models.CreateAPI
-import com.path_studio.githubuser.models.MainViewModel
+import com.path_studio.githubuser.models.*
+import com.path_studio.githubuser.view.fragments.ProfileFragment
+import kotlinx.coroutines.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-private lateinit var binding: ActivityDetailUserBinding
 
 class DetailUserActivity : AppCompatActivity() {
 
@@ -56,6 +55,8 @@ class DetailUserActivity : AppCompatActivity() {
 
     companion object {
         const val EXTRA_USER = "extra_user"
+        const val MY_USERNAME = "patriciafiona"
+
         private const val EXTRA_STATE = "EXTRA_STATE"
     }
 
@@ -70,7 +71,7 @@ class DetailUserActivity : AppCompatActivity() {
         //init
         showLoading(true)
         mainViewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(
-            MainViewModel::class.java
+                MainViewModel::class.java
         )
 
         //set background animated
@@ -112,7 +113,7 @@ class DetailUserActivity : AppCompatActivity() {
         setFloatBtnRead(false)
 
         var users = ArrayList<UserFav>()
-        uriWithLogin = Uri.parse("${DatabaseContract.UserColumns.CONTENT_URI}/$login")
+        uriWithLogin = Uri.parse("$CONTENT_URI/$login")
         val cursor = contentResolver.query(uriWithLogin, null, null, null, null)
 
         if (cursor != null) {
@@ -124,15 +125,15 @@ class DetailUserActivity : AppCompatActivity() {
 
         if(statusFav){
             binding.favBtn.backgroundTintList = ColorStateList.valueOf(
-                this@DetailUserActivity.getColor(
-                    R.color.red
-                )
+                    this@DetailUserActivity.getColor(
+                            R.color.red
+                    )
             )
         }else{
             binding.favBtn.backgroundTintList = ColorStateList.valueOf(
-                this@DetailUserActivity.getColor(
-                    R.color.grey_300
-                )
+                    this@DetailUserActivity.getColor(
+                            R.color.grey_300
+                    )
             )
         }
 
@@ -144,44 +145,44 @@ class DetailUserActivity : AppCompatActivity() {
     private fun addToDatabase(login: String){
         val values = ContentValues()
         values.put(DatabaseContract.UserColumns.LOGIN, login)
-        values.put(DatabaseContract.UserColumns.DATE, Utils.getCurrentDate())
+        values.put(DATE, Utils.getCurrentDate())
 
-        val result = contentResolver.insert(DatabaseContract.UserColumns.CONTENT_URI, values)
+        val result = contentResolver.insert(CONTENT_URI, values)
 
         if (result != null) {
             binding.favBtn.backgroundTintList = ColorStateList.valueOf(this.getColor(R.color.red))
             Toast.makeText(
-                this@DetailUserActivity,
-                this.getText(R.string.success_add_fav),
-                Toast.LENGTH_SHORT
+                    this@DetailUserActivity,
+                    this.getText(R.string.success_add_fav),
+                    Toast.LENGTH_SHORT
             ).show()
         } else {
             binding.favBtn.backgroundTintList = ColorStateList.valueOf(this.getColor(R.color.grey_300))
             Toast.makeText(
-                this@DetailUserActivity,
-                this.getText(R.string.failed_add_fav),
-                Toast.LENGTH_SHORT
+                    this@DetailUserActivity,
+                    this.getText(R.string.failed_add_fav),
+                    Toast.LENGTH_SHORT
             ).show()
         }
     }
 
     private fun deleteToDatabase(login: String){
-        uriWithLogin = Uri.parse(DatabaseContract.UserColumns.CONTENT_URI.toString() + "/" + login)
+        uriWithLogin = Uri.parse(CONTENT_URI.toString() + "/" + login)
         val result = contentResolver.delete(uriWithLogin, null, null)
 
         if (result > 0) {
             binding.favBtn.backgroundTintList = ColorStateList.valueOf(this.getColor(R.color.grey_300))
             Toast.makeText(
-                this@DetailUserActivity,
-                this.getText(R.string.success_remove_fav),
-                Toast.LENGTH_SHORT
+                    this@DetailUserActivity,
+                    this.getText(R.string.success_remove_fav),
+                    Toast.LENGTH_SHORT
             ).show()
         }else{
             binding.favBtn.backgroundTintList = ColorStateList.valueOf(this.getColor(R.color.red))
             Toast.makeText(
-                this@DetailUserActivity,
-                this.getText(R.string.failed_remove_fav),
-                Toast.LENGTH_SHORT
+                    this@DetailUserActivity,
+                    this.getText(R.string.failed_remove_fav),
+                    Toast.LENGTH_SHORT
             ).show()
         }
     }
@@ -228,8 +229,8 @@ class DetailUserActivity : AppCompatActivity() {
 
     private fun getAndCheckMyFollowing(){
         CreateAPI.create().getUserFollowing(
-            MY_USERNAME,
-            ACCESS_TOKEN
+                DetailFollowActivity.USERNAME,
+                ProfileFragment.ACCESS_TOKEN
         ).enqueue(object : Callback<List<User>> {
             override fun onResponse(call: Call<List<User>>, response: Response<List<User>>) {
                 if (response.isSuccessful) {

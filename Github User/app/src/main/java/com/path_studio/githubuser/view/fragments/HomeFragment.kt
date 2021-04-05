@@ -1,4 +1,4 @@
-package com.path_studio.githubuser.fragments
+package com.path_studio.githubuser.view.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,8 +11,8 @@ import android.webkit.WebViewClient
 import androidx.fragment.app.Fragment
 import com.faltenreich.skeletonlayout.Skeleton
 import com.path_studio.githubuser.Utils.showFailedGetDataFromAPI
-import com.path_studio.githubuser.activities.MainActivity
 import com.path_studio.githubuser.databinding.FragmentHomeBinding
+import com.path_studio.githubuser.view.activities.MainActivity
 
 
 class HomeFragment : Fragment() {

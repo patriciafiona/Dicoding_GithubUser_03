@@ -1,6 +1,8 @@
-package com.path_studio.githubuser.activities
+package com.path_studio.githubuser.view.activities
 
+import android.os.Build
 import android.os.Bundle
+import android.os.StrictMode
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
@@ -54,6 +56,11 @@ class MainActivity : AppCompatActivity() {
 
         //set Material Search Bar
         settingSearch()
+
+        if (Build.VERSION.SDK_INT > 9) {
+            val policy = StrictMode.ThreadPolicy.Builder().permitAll().build()
+            StrictMode.setThreadPolicy(policy)
+        }
     }
 
     private fun settingSearch() {

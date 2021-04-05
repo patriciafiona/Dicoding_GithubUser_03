@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/Layout.Padding_20"
-    tools:context=".fragments.FollowerFragment">
+    tools:context=".views.fragments.FollowerFragment">
 
     <!-- Progress Barr -->
     <ProgressBar

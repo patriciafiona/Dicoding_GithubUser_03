@@ -6,27 +6,27 @@
     app:startDestination="@id/navigation_home">
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.path_studio.githubuser.fragments.HomeFragment"
+        android:name="com.path_studio.githubuser.view.fragments.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" />
     <fragment
         android:id="@+id/navigation_explore"
-        android:name="com.path_studio.githubuser.fragments.ExploreFragment"
+        android:name="com.path_studio.githubuser.view.fragments.ExploreFragment"
         android:label="fragment_list_user"
         tools:layout="@layout/fragment_explore" />
     <fragment
         android:id="@+id/navigation_favorite"
-        android:name="com.path_studio.githubuser.fragments.FavoriteUserFragment"
+        android:name="com.path_studio.githubuser.view.fragments.FavoriteUserFragment"
         android:label="fragment_user_fav"
         tools:layout="@layout/fragment_favorite_user" />
     <fragment
         android:id="@+id/navigation_profile"
-        android:name="com.path_studio.githubuser.fragments.ProfileFragment"
+        android:name="com.path_studio.githubuser.view.fragments.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
     <fragment
         android:id="@+id/navigation_settings"
-        android:name="com.path_studio.githubuser.fragments.SettingsFragment"
+        android:name="com.path_studio.githubuser.view.fragments.SettingsFragment"
         android:label="fragment_settings"
         tools:layout="@layout/fragment_settings" />
 </navigation>

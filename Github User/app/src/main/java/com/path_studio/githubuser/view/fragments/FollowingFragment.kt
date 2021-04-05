@@ -1,4 +1,4 @@
-package com.path_studio.githubuser.fragments
+package com.path_studio.githubuser.view.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,25 +8,25 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.path_studio.githubuser.activities.DetailFollowActivity
 import com.path_studio.githubuser.adapters.ListFollowAdapter
-import com.path_studio.githubuser.databinding.FragmentFollowerBinding
+import com.path_studio.githubuser.databinding.FragmentFollowingBinding
 import com.path_studio.githubuser.entities.User
 import com.path_studio.githubuser.models.MainViewModel
+import com.path_studio.githubuser.view.activities.DetailFollowActivity
 
-class FollowerFragment : Fragment() {
+class FollowingFragment : Fragment() {
 
     private lateinit var mainViewModel: MainViewModel
-    private lateinit var listFollower:ArrayList<User>
+    private lateinit var listFollowing:ArrayList<User>
 
-    private var _binding: FragmentFollowerBinding? = null
-    private val binding get() = _binding as FragmentFollowerBinding
+    private var _binding: FragmentFollowingBinding? = null
+    private val binding get() = _binding as FragmentFollowingBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentFollowerBinding.inflate(inflater, container, false)
+        _binding = FragmentFollowingBinding.inflate(inflater, container, false)
         val view = binding.root
 
         //show Loading
@@ -35,33 +35,32 @@ class FollowerFragment : Fragment() {
         mainViewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(MainViewModel::class.java)
 
         //get list following
-        getFollowerFromAPIAndShow()
+        getFollowingFromAPIAndShow()
 
         return view
     }
 
-    private fun getFollowerFromAPIAndShow(){
-        mainViewModel.setFollowers(activity as DetailFollowActivity, DetailFollowActivity.USERNAME)
+    private fun getFollowingFromAPIAndShow(){
+        mainViewModel.setFollowing(activity as DetailFollowActivity, DetailFollowActivity.USERNAME)
 
-        mainViewModel.getFollowers().observe(activity as DetailFollowActivity, {items ->
+        mainViewModel.getFollowing().observe(activity as DetailFollowActivity, {items ->
             if (items != null) {
-                listFollower = items
+                listFollowing = items
                 showRV()
                 showLoading(false)
             }
         })
-
     }
 
     private fun showRV(){
-        if(listFollower.size > 0){
+        if(listFollowing.size > 0){
             binding.noData.visibility = View.GONE
             binding.noRvData.visibility = View.GONE
 
-            val rvListFollowing: RecyclerView = binding.rvListFollower
+            val rvListFollowing: RecyclerView = binding.rvListFollowing
             rvListFollowing.setHasFixedSize(true)
 
-            showRecyclerList(rvListFollowing, listFollower)
+            showRecyclerList(rvListFollowing, listFollowing)
         }else{
             binding.noData.visibility = View.VISIBLE
             binding.noRvData.visibility = View.VISIBLE

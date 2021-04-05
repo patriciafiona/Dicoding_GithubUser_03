@@ -1,4 +1,4 @@
-package com.path_studio.consumer_app.fragments
+package com.path_studio.consumer_app.views.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,10 +8,10 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.path_studio.consumer_app.activities.DetailFollowActivity
 import com.path_studio.consumer_app.adapters.ListFollowAdapter
 import com.path_studio.consumer_app.databinding.FragmentFollowingBinding
 import com.path_studio.consumer_app.entities.User
+import com.path_studio.consumer_app.views.activities.DetailFollowActivity
 import com.path_studio.githubuser.models.MainViewModel
 
 class FollowingFragment : Fragment() {

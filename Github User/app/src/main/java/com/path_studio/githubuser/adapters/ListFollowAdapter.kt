@@ -11,8 +11,8 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.path_studio.githubuser.R
 import com.path_studio.githubuser.Utils
-import com.path_studio.githubuser.activities.DetailUserActivity
 import com.path_studio.githubuser.entities.User
+import com.path_studio.githubuser.view.activities.DetailUserActivity
 import de.hdodenhof.circleimageview.CircleImageView
 
 class ListFollowAdapter(val list: ArrayList<User>, val context: Context) : RecyclerView.Adapter<ListFollowAdapter.ListViewHolder>() {

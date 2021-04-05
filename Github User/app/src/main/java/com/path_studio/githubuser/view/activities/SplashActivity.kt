@@ -1,4 +1,4 @@
-package com.path_studio.consumer_app.activities
+package com.path_studio.githubuser.view.activities
 
 import android.content.Intent
 import android.os.Bundle
