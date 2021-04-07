@@ -28,13 +28,6 @@ class UserHelper(context: Context)  {
         database = dataBaseHelper.writableDatabase
     }
 
-    fun close() {
-        dataBaseHelper.close()
-
-        if (database.isOpen)
-            database.close()
-    }
-
     fun queryAll(): Cursor {
         return database.query(
             DATABASE_TABLE,

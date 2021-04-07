@@ -39,8 +39,8 @@ class AlarmReceiver : BroadcastReceiver() {
     }
 
     private fun showAlarmNotification(context: Context, message: String, notifId: Int) {
-        val CHANNEL_ID = "Channel_1"
-        val CHANNEL_NAME = "AlarmManager channel"
+        val channelId = "Channel_1"
+        val channelName = "AlarmManager channel"
 
         val notificationManagerCompat = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         val alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
@@ -50,7 +50,7 @@ class AlarmReceiver : BroadcastReceiver() {
             R.drawable.github_icon
         )
 
-        val builder = NotificationCompat.Builder(context, CHANNEL_ID)
+        val builder = NotificationCompat.Builder(context, channelId)
                 .setSmallIcon(R.drawable.ic_baseline_access_time_black_24)
                 .setContentTitle(TYPE_REPEATING)
                 .setContentText(context.getText(R.string.daily_reminder))
@@ -78,15 +78,15 @@ class AlarmReceiver : BroadcastReceiver() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             /* Create or update. */
             val channel = NotificationChannel(
-                    CHANNEL_ID,
-                    CHANNEL_NAME,
+                    channelId,
+                    channelName,
                     NotificationManager.IMPORTANCE_DEFAULT
             )
 
             channel.enableVibration(true)
             channel.vibrationPattern = longArrayOf(1000, 1000, 1000, 1000, 1000)
 
-            builder.setChannelId(CHANNEL_ID)
+            builder.setChannelId(channelId)
 
             notificationManagerCompat.createNotificationChannel(channel)
         }

@@ -34,10 +34,7 @@ class FavoriteUserWidget : AppWidgetProvider() {
         const val EXTRA_ITEM = "com.path_studio.githubuser.EXTRA_ITEM"
         private const val EXTRA_LOGIN = "USER_LOGIN"
         private const val MyPREFERENCES = "MyPREFERENCES"
-        private const val APPWIDGETID = "APPWIDGETID"
-
-        private const val WIDGET_CLICK = "widgetsclick"
-        private const val WIDGET_ID_EXTRA = "widget_id_extra"
+        private const val APP_WIDGET_ID = "APPWIDGETID"
     }
 
     private fun updateAppWidget(context: Context, appWidgetManager: AppWidgetManager, appWidgetId: Int) {
@@ -47,7 +44,7 @@ class FavoriteUserWidget : AppWidgetProvider() {
         //share appWidgetID to update later
         val sharedPreferences: SharedPreferences = context.getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE)
         val editor: SharedPreferences.Editor = sharedPreferences.edit()
-        editor.putInt(APPWIDGETID, appWidgetId)
+        editor.putInt(APP_WIDGET_ID, appWidgetId)
         editor.apply()
 
         runBlocking {
@@ -99,13 +96,6 @@ class FavoriteUserWidget : AppWidgetProvider() {
                 }
             }
         }
-    }
-
-    private fun getPendingSelfIntent(context: Context, appWidgetId: Int, action: String): PendingIntent {
-        val intent = Intent(context, javaClass)
-        intent.action = action
-        intent.putExtra(WIDGET_ID_EXTRA, appWidgetId)
-        return PendingIntent.getBroadcast(context, appWidgetId, intent, 0)
     }
 
     override fun onUpdate(context: Context, appWidgetManager: AppWidgetManager, appWidgetIds: IntArray) {

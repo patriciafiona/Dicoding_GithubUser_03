@@ -167,7 +167,7 @@ class DetailUserActivity : AppCompatActivity() {
     }
 
     private fun deleteToDatabase(login: String){
-        uriWithLogin = Uri.parse(CONTENT_URI.toString() + "/" + login)
+        uriWithLogin = Uri.parse("$CONTENT_URI/$login")
         val result = contentResolver.delete(uriWithLogin, null, null)
 
         if (result > 0) {

@@ -18,15 +18,4 @@ object MappingHelper {
         return userList
     }
 
-    fun mapCursorToObject(notesCursor: Cursor?): UserFav {
-        var user = UserFav()
-        notesCursor?.apply {
-            moveToFirst()
-            val id = getInt(getColumnIndexOrThrow(DatabaseContract.UserColumns._ID))
-            val login = getString(getColumnIndexOrThrow(DatabaseContract.UserColumns.LOGIN))
-            val date = getString(getColumnIndexOrThrow(DatabaseContract.UserColumns.DATE))
-            user = UserFav(id, login, date)
-        }
-        return user
-    }
 }
